@@ -26,6 +26,8 @@ Sprint Goal (this week):
 
 ## 3) Sprint Cadence (simple)
 
+**Trello dashboard** | https://trello.com/b/VoTlCAOa/tbda-gp-3-scrum-board 
+
 * **Length:**  
 * **Events:**
 
@@ -37,7 +39,7 @@ Sprint Goal (this week):
 
 * ** Whatever we want to have here
 
-## 5) Definition of Done (DoD)
+## 5) Definition of Done 
 
 * [ ] Code builds and tests pass locally/CI
 * [ ] Peer review by ≥ 1 teammate
