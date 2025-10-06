@@ -18,11 +18,15 @@ Sprint Goal (this week):
 | ---------------------- | -------               | 
 | **Product Owner (PO)** | Joaquín Ordieres Meré | 
 | **Scrum Master (SM)**  |                       | 
-| **Developers**         |                       | 
+| **Backend**            |                       | 
+| **UI/UX**              |                       | 
+| **Documentation**      |                       | 
+| **Business analyst**   |                       | 
+
 
 ## 3) Sprint Cadence (simple)
 
-* **Length:** 1 week (Lecture → Lecture)
+* **Length:**  
 * **Events:**
 
   * **Planning (45 min):** DECIDE DATE?
