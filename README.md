@@ -1,76 +1,62 @@
-# 2025G3
+# Tools for Big Data Analytics – Group 3  
+### *Understanding from Numerical Control Driven Machining Control*  
+**Client / Product Owner:** Prof. Joaquín Ordieres Meré ([j.ordieres@upm.es](mailto:j.ordieres@upm.es))  
 
-## 1) Needs
-
-•	To identify operation periods of the machine as well as working segments.
-•	To create a UI to facilitate the interaction.
-•	To identify sequences of operations regularly repeated.
-•	To determine timing and Energy demands per program name.
-•	To identify which variables can be affected by operation, to be shown.
-•	To determine Alerts and contextualize them (Type and Location).
-•	To document the approach and Algorithms.
-
-Sprint Goal (this week):
-
-## 2) Team & Roles
-
-| Role                   | Name                  | 
-| ---------------------- | -------               | 
-| **Product Owner (PO)** | Joaquín Ordieres Meré | 
-| **Scrum Master (SM)**  |                       | 
-| **Backend**            |                       | 
-| **UI/UX**              |                       | 
-| **Documentation**      |                       | 
-| **Business analyst**   |                       | 
-
-
-## 3) Sprint Cadence (simple)
-
-**Trello dashboard** | https://trello.com/b/VoTlCAOa/tbda-gp-3-scrum-board 
-
-* **Length:**  
-* **Events:**
-
-  * **Planning (45 min):** DECIDE DATE?
-  * **Review (30–45 min):** Just before next lecture? Demo working software.
-  * **Retro (20–30 min):** End of week? Thursday? On whatsapp?.
-
-## 4) Working Agreements
-
-* ** Whatever we want to have here
-
-## 5) Definition of Done 
-
-* [ ] Code builds and tests pass locally/CI
-* [ ] Peer review by ≥ 1 teammate
-* [ ] Demo and or Notebook(?) updated and runnable
-* [ ] README/docs updated if needed
-
-## 6) How to Run (AI created example, swtich to whatever we want later)
-
-```bash
-# setup
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-
-# run app / notebook
-make run   # or: jupyter lab
-```
-
-## 7) Contributing
-
-1. Create a branch → commit small changes
-2. Open Pull Request. Link issue
-3. Ensure CI is "green" → request review from teammates
-
-## 8) Backlog ()
-
-Priorities
-  * [ ] <item 1>
-  * [ ] <item 2>
-  * [ ] <item 3>
-
-## 9) Contacts
-
-* **PO:** Joaquín Ordieres Meré - j.ordieres@upm.es
 ---
+
+## 1 Project Overview  
+
+### Objectives  
+- Detect **operation periods** and **idle times** automatically  
+- Visualize sequences of operations and repeated patterns  
+- Estimate **energy consumption** and **timing per program**  
+- Identify which variables are influenced by each operation  
+- Generate **contextual alerts** (type and location)  
+- Develop an interactive **UI dashboard** for data exploration  
+- Document algorithms and architecture for reproducibility  
+
+---
+
+## 2 Team & Roles  
+
+| Role | Name | Responsibilities |
+|------|------|------------------|
+| **Product Owner** | Joaquín Ordieres | Defines business case & priorities |
+| **Scrum Master** | Johan | Facilitates Scrum, syncs with PO, manages sprints & backlog |
+| **Architect / Tech Liaison** | Federico | Defines architecture, ensures integration between teams |
+| **Documentation Lead** | Maxime | Maintains structure & integrates team deliverables |
+| **Data Engineers** | Tim, Laurène, Antonia | ETL, data cleaning, feature extraction |
+| **Analysts / Modelers** | Max, Rickard, Sjoerd | Pattern detection, anomaly analysis, KPIs |
+| **UI / Visualization Team** | Liz, Anna, Keivan | Dashboard design, visualization, frontend logic |
+
+---
+
+## 3 Workflow  
+
+### Sprint Cadence  
+- **Sprint length:** 2 weeks  
+- **Planning:** Mondays (45 min)  
+- **Review & Demo:** Fridays or before lecture (30–45 min)  
+- **Retrospective:** End of sprint (20–30 min, on Teams/WhatsApp for now)
+
+### Scrum Board  
+**Trello Dashboard:** [TBDA Gp 3 Scrum Board](https://trello.com/b/VoTlCAOa/tbda-gp-3-scrum-board)  
+ 
+Each card represents a **user story (US)**, **task**, or **bug**.  
+
+**Board Structure:**  
+Backlog → Next Sprint → Sprint Backlog → Dev → Code Review → Testing → Done (Sprint X)
+
+### 🎯 Definition of Done (DoD)
+- Code runs locally & passes tests  
+- Peer review completed  
+- Documentation updated  
+- Demo notebook / dashboard updated  
+- Card moved to “Done (Sprint X)”  
+
+## 7 Communication
+Channel	Purpose
+Teams / WhatsApp	Daily syncs, quick coordination
+Trello	Task tracking, sprint planning
+GitHub	Code + Docs + Reviews
+Google Drive	Reports & shared files
