@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 interface Unit {
-    id: number;
-    name: string;
+    id_var: number;
+    date: string;
+    value: string;
 }
 
 export default function Example(){
@@ -23,15 +24,17 @@ export default function Example(){
 
     return (
         <div>
-            <h2>Units</h2>
+            <h2>Latest 10 runs of machine</h2>
             {data.length === 0 ? (
                 <p>Loading...</p>
             ) : (
+                <>
                 <ul>
                     {data.map((unit) => (
-                        <li key={unit.id}>{unit.name}</li>
+                        <li key={unit.id_var}>{unit.date} - {unit.value}</li>
                     ))}
                 </ul>
+                </>
             )}
         </div>
     )
