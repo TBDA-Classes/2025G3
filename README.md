@@ -51,7 +51,6 @@ Backlog → Next Sprint → Sprint Backlog → Dev → Code Review → Testing �
 - Code runs locally & passes tests  
 - Peer review completed  
 - Documentation updated  
-- Demo notebook / dashboard updated  
 - Card moved to “Done (Sprint X)”  
 
 ## 7 Communication
