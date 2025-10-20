@@ -53,7 +53,7 @@ Backlog → Next Sprint → Sprint Backlog → Dev → Code Review → Testing �
 - Documentation updated  
 - Card moved to “Done (Sprint X)”  
 
-## 7 Communication
+## 4 Communication
 Channel	Purpose
 Teams / WhatsApp	Daily syncs, quick coordination
 Trello	Task tracking, sprint planning
