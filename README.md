@@ -4,9 +4,18 @@
 
 ---
 
-## 1 Project Overview  
+## Commands
 
-### Objectives  
+* `mkdocs new [dir-name]` - Create a new project.
+* `mkdocs serve` - Start the live-reloading docs server.
+* `mkdocs build` - Build the documentation site.
+* `mkdocs -h` - Print help message and exit.
+        
+---
+
+## 1. Project Overview 📘
+
+### 1.1 Objectives 🎯
 - Detect **operation periods** and **idle times** automatically  
 - Visualize sequences of operations and repeated patterns  
 - Estimate **energy consumption** and **timing per program**  
@@ -17,7 +26,7 @@
 
 ---
 
-## 2 Team & Roles  
+## 2. Team & Roles 👥
 
 | Role | Name | Responsibilities |
 |------|------|------------------|
@@ -31,15 +40,15 @@
 
 ---
 
-## 3 Workflow  
+## 3. Workflow 🔁
 
-### Sprint Cadence  
+### 3.1 Sprint Cadence ⏱️
 - **Sprint length:** 2 weeks  
 - **Planning:** Mondays (45 min)  
 - **Review & Demo:** Fridays or before lecture (30–45 min)  
 - **Retrospective:** End of sprint (20–30 min, on Teams/WhatsApp for now)
 
-### Scrum Board  
+### 3.2 Scrum Board 📋
 **Trello Dashboard:** [TBDA Gp 3 Scrum Board](https://trello.com/b/VoTlCAOa/tbda-gp-3-scrum-board)  
  
 Each card represents a **user story (US)**, **task**, or **bug**.  
@@ -47,13 +56,13 @@ Each card represents a **user story (US)**, **task**, or **bug**.
 **Board Structure:**  
 Backlog → Next Sprint → Sprint Backlog → Dev → Code Review → Testing → Done (Sprint X)
 
-### 🎯 Definition of Done (DoD)
+###  3.3 Definition of Done (DoD) ✅
 - Code runs locally & passes tests  
 - Peer review completed  
 - Documentation updated  
 - Card moved to “Done (Sprint X)”  
 
-## 4 Communication
+## 4. Communication 💬
 Channel	Purpose
 Teams / WhatsApp	Daily syncs, quick coordination
 Trello	Task tracking, sprint planning
