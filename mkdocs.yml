@@ -1,0 +1,13 @@
+site_name: Tools for Big Data Analytics â€“ Group 3
+theme:
+  name: material
+  palette:
+    primary: blue
+    accent: light blue
+
+nav:
+  - Home: index.md
+  - Architecture: architecture.md
+  - Analytics: analytics.md
+  - Tools & Platforms: tools.md
+  - Results & SDG Impact: results.md
