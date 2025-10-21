@@ -6,7 +6,6 @@ theme:
     accent: light blue
 
 nav:
-  - Home: README.md
   - Architecture: architecture.md
   - Analytics: analytics.md
   - Tools & Platforms: tools.md
