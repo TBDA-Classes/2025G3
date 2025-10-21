@@ -7,6 +7,7 @@ theme:
 
 nav:
   - Home: README.md
+  - Documentation overview: overview.md
   - Architecture: architecture.md
   - Analytics: analytics.md
   - Tools & Platforms: tools.md
