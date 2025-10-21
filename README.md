@@ -5,7 +5,7 @@
 ---
 
 ## Documentation available at:
-
+(can’t be accessed yet because GitHub Pages must be enabled by the professor)
 [https://TBDA-Classes.github.io/2025G3/](https://TBDA-Classes.github.io/2025G3/)
 
 ---
