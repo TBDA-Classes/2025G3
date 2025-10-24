@@ -3,11 +3,6 @@ from psycopg2.extras import RealDictCursor
 from dotenv import load_dotenv
 import os
 
-""" 
-TODO:
-Enter correct credentials below
-
-"""
 
 load_dotenv()
 print(os.getenv("DB_PASSWORD"))

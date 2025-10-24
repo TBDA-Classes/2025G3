@@ -15,7 +15,7 @@ function App(): JSX.Element {
 
   const renderContect = (): JSX.Element => {
     switch (information) {
-      case "general":
+      case "current":
         return <Example/>;
       //case "advanced":
         //return <Advanced/>
@@ -46,7 +46,7 @@ function App(): JSX.Element {
     <div style={{ padding: "2rem" }}>
     <div>
       <button onClick={() => setInformation("home")}>Home</button>
-      <button onClick={() => setInformation("general")}>General Information</button>
+      <button onClick={() => setInformation("current")}>Current</button>
       <button onClick={() => setInformation("advanced")}>Advanced Information</button>
     </div>
       {renderContect()}      

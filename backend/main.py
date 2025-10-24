@@ -36,17 +36,28 @@ app.add_middleware(
 )
 
 
-@app.get("/api")
-def get_example(limit: int = 10):
+@app.get("/api/recent_run")
+def get_run(limit: int = 1):
+
     try:
-        return services.get_example(db_conn, limit)
+        row = services.get_run(db_conn,limit)
+        if row is None:
+            return {}
+        return {
+            "date": row['date'].isoformat(),
+            "value": row['value']
+        }
     except Exception as e:
+        db_conn.rollback()
         raise HTTPException(status_code=500, detail=str(e))
     
 
-@app.get("/api/zones")
+@app.get("/api/active_zones")
 def get_zones():
+
     try:
+        print(services.get_active_zones(db_conn))
         return services.get_active_zones(db_conn)
     except Exception as e:
+        db_conn.rollback()
         raise HTTPException(status_code=500, detail=str(e))
