@@ -45,8 +45,9 @@
 - **Review & Demo:** Fridays or before lecture (30–45 min)  
 - **Retrospective:** End of sprint (20–30 min, on Teams/WhatsApp for now)
 
-### 3.2 Scrum Board 📋
-**Trello Dashboard:** [TBDA Gp 3 Scrum Board](https://trello.com/b/VoTlCAOa/tbda-gp-3-scrum-board)  
+### 3.2 Scrum Board 📋 
+**ClickUp Dashboard (Invite via email needed):** [TBDA G3 Board](https://app.clickup.com/90151811895/v/s/90157519304)
+**(ARCHIVED because of 10 member limitation) Trello Dashboard:** [TBDA Gp 3 Scrum Board](https://trello.com/b/VoTlCAOa/tbda-gp-3-scrum-board) 
  
 Each card represents a **user story (US)**, **task**, or **bug**.  
 
