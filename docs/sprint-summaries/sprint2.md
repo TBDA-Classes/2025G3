@@ -19,13 +19,19 @@
 ## 🚀 Next Sprint (27/10 – 09/11)
 
 ### What should be done
-- Finalize database queries and testing.
+- Frontend and Backend should decide about what data that should be visualized
+    - Ask Client about some data point
+- UX Mockup uploaded to ClickUp and/or GitHub
+- DAta extraction team:
+    - Be able to identify viable data that indicates the state of the machine (on/off/etc.)
+        - Create time intervals when the machine is on
+            - Extract specific variables during this timestamp
 
 ### Documentation
 - Add separate documentation sections for:
   - Backend 
   - Frontend 
-  - Analytics (KPIs maybe)
+  - Analytics/Visualization (KPIs maybe)
 - Ensure each teammate updates relevant documentation `.md` files as their part evolves.
 
 ### User Stories
@@ -33,4 +39,4 @@
 - Each story should have:
   - A clear goal
   - Acceptance criteria
-  - Assigned responsible member
+  - Assigned responsible member(s)
