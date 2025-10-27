@@ -13,13 +13,13 @@
 ## 1. Project Overview 📘
 
 ### 1.1 Objectives 🎯
-- Detect **operation periods** and **idle times** automatically  
+- Detect operation periods and idle times automatically  
 - Visualize sequences of operations and repeated patterns  
-- Estimate **energy consumption** and **timing per program**  
+- Estimate energy consumption and timing per program 
 - Identify which variables are influenced by each operation  
-- Generate **contextual alerts** (type and location)  
-- Develop an interactive **UI dashboard** for data exploration  
-- Document algorithms and architecture for reproducibility  
+- Generate contextual alerts (type and location)  
+- Develop an interactive UI dashboard for data exploration  
+- Document algorithms and architecture for reproducibility    
 
 ---
 

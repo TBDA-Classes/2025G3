@@ -16,12 +16,12 @@
 ## 1. Project Overview 📘
 
 ### 1.1 Objectives 🎯
-- Detect **operation periods** and **idle times** automatically  
+- Detect operation periods and idle times automatically  
 - Visualize sequences of operations and repeated patterns  
-- Estimate **energy consumption** and **timing per program**  
+- Estimate energy consumption and timing per program 
 - Identify which variables are influenced by each operation  
-- Generate **contextual alerts** (type and location)  
-- Develop an interactive **UI dashboard** for data exploration  
+- Generate contextual alerts (type and location)  
+- Develop an interactive UI dashboard for data exploration  
 - Document algorithms and architecture for reproducibility  
 
 ---
@@ -49,7 +49,7 @@
 - **Retrospective:** End of sprint (20–30 min, on Teams/WhatsApp for now)
 
 ### 3.2 Scrum Board 📋
-**ClickUp Dashboard:** [TBDA G3 Board](https://app.clickup.com/90151811895/v/s/90157519304)
+**ClickUp Dashboard (Invite via email needed):** [TBDA G3 Board](https://app.clickup.com/90151811895/v/s/90157519304)
 **(ARCHIVED because of 10 member limitation) Trello Dashboard:** [TBDA Gp 3 Scrum Board](https://trello.com/b/VoTlCAOa/tbda-gp-3-scrum-board) 
  
 Each card represents a **user story (US)**, **task**, or **bug**.  
