@@ -47,6 +47,7 @@
 
 ### 3.2 Scrum Board 📋 
 **ClickUp Dashboard (Invite via email needed):** [TBDA G3 Board](https://app.clickup.com/90151811895/v/s/90157519304)
+
 **(ARCHIVED because of 10 member limitation) Trello Dashboard:** [TBDA Gp 3 Scrum Board](https://trello.com/b/VoTlCAOa/tbda-gp-3-scrum-board) 
  
 Each card represents a **user story (US)**, **task**, or **bug**.  
