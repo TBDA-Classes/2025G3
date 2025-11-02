@@ -5,6 +5,7 @@
 ### What has been done
 - Backend connected to the database.
 - Frontend fetching data from API endpoints.
+- 3 proposals of architecture
 - MkDocs documentation structure created and running locally.
 
 ### What went well
@@ -13,6 +14,7 @@
 ### What can we do better
 - Improve coordination and communication across subteams.
 - Keep ClickUp board updated more frequently.
+- Divide work inside subteams
 
 ---
 
@@ -20,12 +22,12 @@
 
 ### What should be done
 - Frontend and Backend should decide about what data that should be visualized
-    - Ask Client about some data point
+    - Ask Client about their interest in already explored data 
 - UX Mockup uploaded to ClickUp and/or GitHub
-- DAta extraction team:
-    - Be able to identify viable data that indicates the state of the machine (on/off/etc.)
-        - Create time intervals when the machine is on
-            - Extract specific variables during this timestamp
+- Data extraction team:
+    - Identify viable data that indicates the state of the machine (on/off/etc.)
+        - Find/create time intervals when the machine is on
+            - Extract specific variables during these intervals
 
 ### Documentation
 - Add separate documentation sections for:
