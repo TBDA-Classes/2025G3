@@ -7,15 +7,16 @@ theme:
 
 nav:
   - Home: README.md
-  - Frontend:
-      - Placeholder/Overview: frontend/ui.md
-      
-  - Backend:
-      - Placeholder/Overview: backend/api.md
   - Documentation overview: overview.md
   - Architecture: architecture.md
   - Sprint Summaries:
-      - Placeholder/Overview: sprint-summaries/sprint1.md
-      - Placeholder/Overview: sprint-summaries/sprint2.md
+      - Sprint 1 Summary (30/09 – 13/10): sprint-summaries/sprint1.md
+      - Sprint 2 Summary (13/10 – 26/10): sprint-summaries/sprint2.md
+  - Frontend:
+      - Placeholder/Overview: frontend/ui.md
+  - Backend:
+      - Placeholder/Overview: backend/api.md
+  
+
 
 site_url: https://tbda-classes.github.io/2025G3/
