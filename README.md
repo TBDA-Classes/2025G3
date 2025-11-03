@@ -5,7 +5,7 @@
 ---
 
 ## Documentation available at:
-[https://TBDA-Classes.github.io/2025G3/](https://TBDA-Classes.github.io/2025G3/)
+[https://tbda-classes.github.io/2025G3/](https://tbda-classes.github.io/2025G3/)
 
 ---
 
