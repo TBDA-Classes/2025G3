@@ -6,7 +6,6 @@ theme:
     accent: light blue
 
 nav:
-  - Home: README.md
   - Documentation overview: overview.md
   - Architecture: architecture.md
   - Sprint Summaries:
