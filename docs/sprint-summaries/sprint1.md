@@ -8,7 +8,6 @@
 - Initial meetings with the client to understand goals and available data.
 - First exploration of datasets shared by the client.
 - Project architecture brainstorming and first drafts prepared.
-- MkDocs environment initialized and tested locally.
 
 ### What went well
 - Team adapted to collaborative tools (GitHub, ClickUp)
