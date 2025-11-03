@@ -60,7 +60,7 @@ Goal: validate the data model, ensure database connectivity, and develop the fir
 ---
 
 ### 📷 Architecture Diagram
-![Architecture A](docs/assets/TBDA_Architectures-A.jpg)
+![Architecture A](/assets/TBDA_Architectures-A.jpg)
 
 ---
 
