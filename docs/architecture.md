@@ -116,7 +116,7 @@ Goal: optimize performance and manage higher data volumes once the prototype is 
 ---
 
 ### 📷 Architecture Diagram
-![Architecture B](../assets/TBDA_Architectures-B.jpg)
+![Architecture B](/assets/TBDA_Architectures-B.jpg)
 
 ---
 
@@ -174,7 +174,7 @@ Goal: demonstrate real-time analytics capability, provide continuous monitoring,
 ---
 
 ### 📷 Architecture Diagram
-![Architecture C](../assets/TBDA_Architectures-C.jpg)
+![Architecture C](/assets/TBDA_Architectures-C.jpg)
 
 ---
 
