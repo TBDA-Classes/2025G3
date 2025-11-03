@@ -14,8 +14,8 @@ nav:
       - Placeholder/Overview: backend/api.md
   - Documentation overview: overview.md
   - Architecture: architecture.md
-  - Analytics: analytics.md
-  - Tools & Platforms: tools.md
-  - Results & SDG Impact: results.md
+  - Sprint Summaries
+      - Placeholder/Overview: sprint-summaries/sprint1.md
+      - Placeholder/Overview: sprint-summaries/sprint1.md
 
 site_url: https://tbda-classes.github.io/2025G3/

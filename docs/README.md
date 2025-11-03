@@ -4,13 +4,10 @@
 
 ---
 
-## Commands
+## Documentation available at:
+(can’t be accessed yet because GitHub Pages must be enabled by the professor)
+[https://TBDA-Classes.github.io/2025G3/](https://TBDA-Classes.github.io/2025G3/)
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-        
 ---
 
 ## 1. Project Overview 📘
@@ -22,7 +19,7 @@
 - Identify which variables are influenced by each operation  
 - Generate contextual alerts (type and location)  
 - Develop an interactive UI dashboard for data exploration  
-- Document algorithms and architecture for reproducibility  
+- Document algorithms and architecture for reproducibility    
 
 ---
 
@@ -48,8 +45,9 @@
 - **Review & Demo:** Fridays or before lecture (30–45 min)  
 - **Retrospective:** End of sprint (20–30 min, on Teams/WhatsApp for now)
 
-### 3.2 Scrum Board 📋
+### 3.2 Scrum Board 📋 
 **ClickUp Dashboard (Invite via email needed):** [TBDA G3 Board](https://app.clickup.com/90151811895/v/s/90157519304)
+
 **(ARCHIVED because of 10 member limitation) Trello Dashboard:** [TBDA Gp 3 Scrum Board](https://trello.com/b/VoTlCAOa/tbda-gp-3-scrum-board) 
  
 Each card represents a **user story (US)**, **task**, or **bug**.  
