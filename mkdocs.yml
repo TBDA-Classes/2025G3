@@ -10,8 +10,8 @@ nav:
   - Documentation overview: overview.md
   - Architecture: architecture.md
   - Sprint Summaries:
-      - Sprint 1 Summary (30/09 – 13/10): sprint-summaries/sprint1.md
-      - Sprint 2 Summary (13/10 – 26/10): sprint-summaries/sprint2.md
+      - Sprint 1 Summary: sprint-summaries/sprint1.md
+      - Sprint 2 Summary: sprint-summaries/sprint2.md
   - Frontend:
       - Placeholder/Overview: frontend/ui.md
   - Backend:
