@@ -174,7 +174,7 @@ Goal: demonstrate real-time analytics capability, provide continuous monitoring,
 ---
 
 ### 📷 Architecture Diagram
-![Architecture C](/assets/TBDA_Architectures-C.jpg)
+![Architecture C](../assets/TBDA_Architectures-C.jpg)
 
 ---
 
