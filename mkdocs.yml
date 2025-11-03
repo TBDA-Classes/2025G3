@@ -14,7 +14,7 @@ nav:
       - Placeholder/Overview: backend/api.md
   - Documentation overview: overview.md
   - Architecture: architecture.md
-  - Sprint Summaries
+  - Sprint Summaries:
       - Placeholder/Overview: sprint-summaries/sprint1.md
       - Placeholder/Overview: sprint-summaries/sprint2.md
 
