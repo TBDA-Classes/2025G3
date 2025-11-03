@@ -6,6 +6,7 @@ theme:
     accent: light blue
 
 nav:
+  - Home: README.md
   - Documentation overview: overview.md
   - Architecture: architecture.md
   - Sprint Summaries:
@@ -16,6 +17,3 @@ nav:
   - Backend:
       - Placeholder/Overview: backend/api.md
   
-
-
-site_url: https://TBDA-Classes.github.io/2025G3/
