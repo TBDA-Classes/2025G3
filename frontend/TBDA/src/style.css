@@ -1,31 +1,68 @@
-.run-container {
+
+.main {
+    margin: -1rem;
     display: flex;
-    gap: 1rem;
-    align-items: center;
 }
 
-.zones-container {
+
+.sidepanel {
+    width: 15vw;
+    height: 100vh;
+    background-color: #060606;
+    padding: 2rem;
     display: flex;
-    gap: 0.5rem;
-    align-items: center;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.zone-box {
-    width: 80px;
-    height: 80px;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.sidepanel button {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: transparent;
     color: white;
-    font-size: 20px;
     font-weight: bold;
 }
 
-.zone-box.active {
-    background-color: green;
+.sidepanel button:hover {
+    background-color: white;
+    color: black;
 }
 
-.zone-box.inactive {
-    background-color: red;
+
+.information-boxes-container {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem;
+}
+
+.information-box {
+    padding: 0 2rem 2rem 2rem;
+    background-color: rgb(2, 2, 62);
+    color: white;
+    border: #060606 1px solid;
+    border-radius: 1rem;
+}
+
+.filter-panel {
+    display: flex;
+    padding: 2rem;
+    margin: 0 2rem 2rem 0;
+    gap: 1rem;
+    background-color: rgb(2, 2, 62);
+}
+
+.filter-panel button {
+    background-color: #24a0ed;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    color: white;
+    border-radius: 5px;
+    border: none;
+}
+
+.filter-panel input {
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
 }
