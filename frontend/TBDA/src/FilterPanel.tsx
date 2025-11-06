@@ -1,20 +1,17 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
+import "./style.css";
 
-import "./style.css"
+export default function FilterPanel() {
+  const [selectedDate, setSelectedDate] = useState<string>("");
 
-
-
-export default function FilterPanel(){
-    
-    return (
-        <div className="filter-panel">
-            <input type="text" />
-            <input type="text" />
-            <input type="text" />
-            <button>Apply</button>
-        </div>
-    )
-
+  return (
+    <div className="filter-panel">
+      <input
+        type="date"
+        value={selectedDate}
+        onChange={(e) => setSelectedDate(e.target.value)}
+      />
+      <button>Apply</button>
+    </div>
+  );
 }
-
