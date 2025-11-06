@@ -1,9 +1,8 @@
 import { useState, type JSX } from "react";
-import Example from "./Example";
 import SidePanel from "./SidePanel";
 import InformationBox from "./InformationBox";
 import FilterPanel from "./FilterPanel";
-
+import AlertPanel from "./AlertPanel";
 
 function App(): JSX.Element {
 
@@ -28,7 +27,10 @@ function App(): JSX.Element {
           <InformationBox dataName={testData.dataName} dataValue={testData.dataValue}/>
           <InformationBox dataName={testData.dataName} dataValue={testData.dataValue}/>
           <InformationBox dataName={testData.dataName} dataValue={testData.dataValue}/>
-
+          <InformationBox dataName={testData.dataName} dataValue={testData.dataValue}/>
+        </div>
+        <div>
+          <AlertPanel/>
         </div>
       </div>
     </div>

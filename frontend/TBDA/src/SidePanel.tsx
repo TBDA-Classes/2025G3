@@ -13,7 +13,8 @@ export default function SidePanel(){
     return (
         <div className="sidepanel">
             <button>Dashboard</button>
-            <button>Compare Machines</button>
+            <button>Energy Consumtion</button>
+            <button>Compare Runs</button>
             <button>Download Report</button>
         </div>
     )

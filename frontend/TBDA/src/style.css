@@ -1,18 +1,33 @@
 
+:root {
+  --main-bg-color: #0B0D19;
+  --secondary-bg-color: #1e293b;
+  --accent-color: #02b3e4;
+  --text-color: white;
+  --test: #1e293b;
+}
+
+
 .main {
     margin: -1rem;
     display: flex;
+    background-color: var(--main-bg-color);
 }
 
+.main-panel {
+    flex: 1;
+}
 
 .sidepanel {
     width: 15vw;
     height: 100vh;
-    background-color: #060606;
+    background-color: var(--main-bg-color);
     padding: 2rem;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    border: 1px solid white;
+
 }
 
 .sidepanel button {
@@ -29,6 +44,12 @@
     color: black;
 }
 
+.sidepanel button:active {
+    background-color: rgb(183, 174, 174);
+    color: black;
+}
+
+
 
 .information-boxes-container {
     display: flex;
@@ -38,10 +59,11 @@
 
 .information-box {
     padding: 0 2rem 2rem 2rem;
-    background-color: rgb(2, 2, 62);
+    background-color: var(--secondary-bg-color);
     color: white;
-    border: #060606 1px solid;
+    border: white 1px solid;
     border-radius: 1rem;
+
 }
 
 .filter-panel {
@@ -49,7 +71,9 @@
     padding: 2rem;
     margin: 0 2rem 2rem 0;
     gap: 1rem;
-    background-color: rgb(2, 2, 62);
+    background-color: var(--secondary-bg-color);
+    border: 1px solid white;
+
 }
 
 .filter-panel button {
@@ -61,8 +85,42 @@
     border: none;
 }
 
+.filter-panel button:hover {
+    background-color: #1f8acc;
+    
+}
+
+.filter-panel button:active {
+    background-color: #176494;
+    
+}
+
 .filter-panel input {
     padding: 5px;
     border-radius: 10px;
     border: none;
+}
+
+.sub-main-panel {
+    display: flex;
+    gap: 10px;
+    margin: 20px;
+}
+
+.graphs {
+    border: 1px solid white;
+    border-radius: 5px;
+    height: 50vh;
+    text-align: center;
+    flex: 3;
+
+}
+
+.alerts {
+    color: white;
+    text-align: center;
+    background-color: var(--secondary-bg-color);
+    flex: 1;
+    border-radius: 10px;
+    border: 1px white solid;
 }
