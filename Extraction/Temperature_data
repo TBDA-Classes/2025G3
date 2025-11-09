@@ -17,11 +17,11 @@ end_ts   = f"{date_day} 23:59:59"
 
 temp_ids = [449, 453, 456, 448, 454]
 names = {
-    449: "TEMP_AXIS_1",
-    453: "TEMP_AXIS_2",
-    456: "TEMP_AXIS_3",
-    448: "TEMP_AXIS_4",
-    454: "TEMP_AXIS_5"
+    449: ""TEMPERATURA_MOTOR_8	"",
+    453: "TEMPERATURA_MOTOR_7",
+    456: "TEMPERATURA_MOTOR_6",
+    448: "TEMPERATURA_MOTOR_5",
+    454: "TEMPERATURA_MOTOR_4"
 }
 
 # --- Convert timestamps to epoch (ms) ---
