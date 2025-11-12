@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from database import get_connection
 from contextlib import asynccontextmanager
@@ -8,8 +8,8 @@ import services
 
 #CORS 
 origins = [
-    "http://localhost:5173"
-]
+    "http://localhost:5173",
+    "http://127.0.0.1:5173"]
 
 db_conn = None
 
@@ -36,7 +36,7 @@ app.add_middleware(
 )
 
 
-@app.get("/api/recent_run")
+""" @app.get("/api/recent_run")
 def get_run(limit: int = 1):
 
     try:
@@ -48,16 +48,24 @@ def get_run(limit: int = 1):
             "value": row['value']
         }
     except Exception as e:
-        db_conn.rollback()
-        raise HTTPException(status_code=500, detail=str(e))
+        #db_conn.rollback()
+        raise HTTPException(status_code=500, detail=str(e)) """
     
-
-@app.get("/api/active_zones")
-def get_zones():
-
+    
+@app.get("/api/daily_temp_avg")
+def get_daily_temp_avg(date: str = Query(...)):
     try:
-        print(services.get_active_zones(db_conn))
-        return services.get_active_zones(db_conn)
+        return services.get_daily_average_temp(db_conn, date)
     except Exception as e:
         db_conn.rollback()
+
+        raise HTTPException(status_code=500, detail=str(e))
+    
+@app.get("/api/daily_spindle_avg")
+def get_daily_spindle_avg(date: str = Query(...)):
+    try:
+        return services.get_daily_average_spindle_load(db_conn, date)
+    except Exception as e:
+        db_conn.rollback()
+
         raise HTTPException(status_code=500, detail=str(e))
