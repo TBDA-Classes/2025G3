@@ -39,4 +39,46 @@ def get_active_zones(db_conn,limit=1):
         #raise HTTPException(status_code=500, detail=str(e))
         raise e
 
+from datetime import datetime, timedelta
+
+def get_daily_average_temp(db_conn, date):
+    try:
+        # Convert string to datetime
+        date = datetime.strptime(date, "%Y-%m-%d")
+        start_ts = int(date.timestamp() * 1000)          # start of day in ms
+        end_ts = int((date + timedelta(days=1)).timestamp() * 1000)  # start of next day in ms
+
+        with db_conn.cursor() as cursor:
+            cursor.execute("""
+                SELECT %s::date AS log_time,
+                       ROUND(AVG(value)::numeric, 1) AS avg_temp
+                FROM "public"."variable_log_float"
+                WHERE id_var = 618
+                  AND date >= %s
+                  AND date < %s;
+            """, (date, start_ts, end_ts))
+
+            return cursor.fetchone()
+    except Exception as e:
+        raise e
+    
+def get_daily_average_spindle_load(db_conn, date):
+    try:
+        # Convert string to datetime
+        date = datetime.strptime(date, "%Y-%m-%d")
+        start_ts = int(date.timestamp() * 1000)          # start of day in ms
+        end_ts = int((date + timedelta(days=1)).timestamp() * 1000)  # start of next day in ms
+
+        with db_conn.cursor() as cursor:
+            cursor.execute("""
+                SELECT %s::date AS log_time,
+                       ROUND(AVG(value)::numeric, 1) AS avg_spindle
+                FROM "public"."variable_log_float"
+                WHERE id_var = 630
+                  AND date >= %s
+                  AND date < %s;
+            """, (date, start_ts, end_ts))
+            return cursor.fetchone()
+    except Exception as e:
+        raise e
         

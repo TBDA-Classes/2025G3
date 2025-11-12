@@ -3,14 +3,14 @@ import axios from "axios";
 
 import "./style.css"
 
-interface SidePanelData {
+interface InformationData {
     dataName: string;
-    dataValue: string;
+    dataValue: string | number;
 }
 
 
 
-export default function InformationBox({dataName, dataValue}: SidePanelData){
+export default function InformationBox({dataName, dataValue}: InformationData){
     
     return (
         <div className="information-box">

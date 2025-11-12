@@ -1,8 +1,12 @@
 import { useState } from "react";
 import "./style.css";
 
-export default function FilterPanel() {
-  const [selectedDate, setSelectedDate] = useState<string>("");
+interface FilterPanelProps {
+  selectedDate: string;
+  setSelectedDate: (date: string) => void;
+}
+
+export default function FilterPanel({ selectedDate, setSelectedDate}: FilterPanelProps) {
 
   return (
     <div className="filter-panel">
