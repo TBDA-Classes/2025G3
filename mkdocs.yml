@@ -5,8 +5,11 @@ theme:
     primary: blue
     accent: light blue
 
+markdown_extensions:
+  - pymdownx.snippets   # enables --8<-- includes
+
 nav:
-  - Home: README.md
+  - Home: index.md
   - Documentation overview: overview.md
   - Architecture: architecture.md
   - Sprint Summaries:
