@@ -18,7 +18,7 @@
 
 ---
 
-## 🚀 Next Sprint (27/10 – 09/11)
+## 🚀 Next Sprint (27/10 – 13/11)
 
 ### What should be done
 - Frontend and Backend should decide about what data that should be visualized
