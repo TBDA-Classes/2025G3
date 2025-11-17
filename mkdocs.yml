@@ -15,6 +15,7 @@ nav:
   - Sprint Summaries:
       - Sprint 1 Summary: sprint-summaries/sprint1.md
       - Sprint 2 Summary: sprint-summaries/sprint2.md
+      - Sprint 3 Summary: sprint-summaries/sprint3.md
   - Frontend:
       - Placeholder/Overview: frontend/ui.md
   - Backend:
