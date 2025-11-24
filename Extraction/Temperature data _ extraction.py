@@ -3,6 +3,16 @@ import pandas as pd
 from sqlalchemy import create_engine, text
 
 #create engine for connection to the database
+import yaml
+
+with open("config.yaml", "r") as f:
+    config = yaml.safe_load(f)
+
+db = config["database"]
+
+engine = create_engine(
+    f"postgresql+psycopg2://{db['user']}:{db['password']}@{db['host']}:{db['port']}/{db['dbname']}"
+)
 
 # --- Parameters ---
 date_day = "2021-01-12"
@@ -62,4 +72,5 @@ else:
     plt.ylabel("Temperature (°C)")
     plt.legend()
     plt.tight_layout()
+
     plt.show()
