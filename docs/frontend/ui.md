@@ -24,7 +24,7 @@ Their goals:
 ### UX Draft
 ![UI overview](../assets/UX_Mockup_1.png)
 
-![Updated FIGMA draft](https://www.figma.com/make/6YPQxr4f99iAVQY5Oej8Y4/CNC-Analytics-Dashboard-Design?fullscreen=1)
+[Updated FIGMA draft](https://www.figma.com/make/6YPQxr4f99iAVQY5Oej8Y4/CNC-Analytics-Dashboard-Design?fullscreen=1)
 
 ### Feedback from the professor
 We don’t have access to current data so we won’t be able to show that. More interesting is to be able to go back in time and see which programs and data points during certain dates etc.
