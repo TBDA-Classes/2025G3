@@ -8,6 +8,10 @@ theme:
 markdown_extensions:
   - pymdownx.snippets   # enables --8<-- includes
 
+plugins:
+  - mkdocstrings:
+      default_handler: python
+
 nav:
   - Home: index.md
   - Documentation overview: overview.md
@@ -17,7 +21,7 @@ nav:
       - Sprint 2 Summary: sprint-summaries/sprint2.md
       - Sprint 3 Summary: sprint-summaries/sprint3.md
   - Frontend:
-      - Placeholder/Overview: frontend/ui.md
+      - Overview: frontend/ui.md
   - Backend:
-      - Placeholder/Overview: backend/api.md
+      - Overview: backend/api.md
   
