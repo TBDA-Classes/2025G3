@@ -4,6 +4,16 @@ from sqlalchemy import text
 import matplotlib.pyplot as plt
 
 #create engine for connection to the database
+import yaml
+
+with open("config.yaml", "r") as f:
+    config = yaml.safe_load(f)
+
+db = config["database"]
+
+engine = create_engine(
+    f"postgresql+psycopg2://{db['user']}:{db['password']}@{db['host']}:{db['port']}/{db['dbname']}"
+)
 
 ## Parameters ##
 date_jour = "2020-12-29"
@@ -100,4 +110,5 @@ else:
 
     plt.tight_layout()
     plt.show()
+
 #print(df_summary)
