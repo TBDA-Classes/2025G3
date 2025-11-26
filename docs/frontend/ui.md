@@ -28,3 +28,24 @@ Their goals:
 
 ### Feedback from the professor
 We don’t have access to current data so we won’t be able to show that. More interesting is to be able to go back in time and see which programs and data points during certain dates etc.
+
+### Next Steps and Goals
+We’re now beginning the development of the website. Its main purpose is to let users select a past date and view a dashboard displaying machine-operation data for that specific day. For the time being, the daily data we intend to present includes:
+- Average daily temperature
+- Average daily spindle load
+- Energy consumed
+- Graphs showing temperature, spindle load and energy consumption throughout the day
+- Alerts (if applicable)
+
+## First draft on website (presented 24/11)
+### Website Draft
+![Website overview](../assets/Website_Draft_1.png)
+
+### Progress
+We have successfully established a connection between the client and the server which is connected to the database. On the dashboard, we have currently implemented the following:
+- Average daily temperature
+- Average daily spinde load
+
+### Next Steps
+Our immediate focus is to include alerts on the dashboard. Following this, we will implement the energy-consumption metric. If time and resources permit, we will proceed with developing the visualization graphs for these measurements.
+
