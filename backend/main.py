@@ -61,6 +61,14 @@ def get_daily_temp_avg(date: str = Query(...)):
 
         raise HTTPException(status_code=500, detail=str(e))
     
+@app.get("/api/daily_alerts")
+def get_daily_alerts(date: str = Query(...)):
+    try:
+        return services.get_daily_alerts(db_conn, date)
+    except Exception as e:
+        db_conn.rollback()
+
+        raise HTTPException(status_code=500, detail=str(e))
 @app.get("/api/daily_spindle_avg")
 def get_daily_spindle_avg(date: str = Query(...)):
     try:
