@@ -94,6 +94,37 @@ def get_daily_average_temp(db_conn, date):
     except Exception as e:
         raise e
     
+
+import json
+def get_daily_alerts(db_conn, date):
+    try:
+        # Convert string to datetime
+        date = datetime.strptime(date, "%Y-%m-%d")
+        start_ts = int(date.timestamp() * 1000)          # start of day in ms
+        end_ts = int((date + timedelta(days=1)).timestamp() * 1000)  # start of next day in ms
+
+        print(date)
+        with db_conn.cursor() as cursor:
+            cursor.execute("""
+            SELECT %s::date AS log_time,
+              value
+            FROM public.variable_log_string
+            WHERE id_var = 447
+                AND date >= %s
+                AND date < %s
+            ORDER BY date;
+            """, (date, start_ts, end_ts))
+            #return len(cursor.fetchone())
+
+            row = cursor.fetchone()
+            value_str = row["value"]
+            alarms = json.loads(value_str)
+            return {"num_alarms": len(alarms)}  # always a JSON object
+            #return cursor.fetchone()
+            
+    except Exception as e:
+        raise e
+
 def get_daily_average_spindle_load(db_conn, date):
     """
     Compute the daily average temperature for a given date.
@@ -112,24 +143,24 @@ def get_daily_average_spindle_load(db_conn, date):
     -------
     dict | None
         A row with keys ``log_time`` (date) and ``avg_temp`` (numeric), or
-        ``None`` if no data exists for that date.
-    """
+        ``None`` if no data exists for that date. """
     try:
         # Convert string to datetime
         date = datetime.strptime(date, "%Y-%m-%d")
-        start_ts = int(date.timestamp() * 1000)          # start of day in ms
+        start_ts = int(date.timestamp() * 1000)  # start of day in ms
         end_ts = int((date + timedelta(days=1)).timestamp() * 1000)  # start of next day in ms
 
         with db_conn.cursor() as cursor:
             cursor.execute("""
                 SELECT %s::date AS log_time,
-                       ROUND(AVG(value)::numeric, 1) AS avg_spindle
+                  ROUND(AVG(value)::numeric, 1) AS avg_spindle
                 FROM "public"."variable_log_float"
                 WHERE id_var = 630
-                  AND date >= %s
-                  AND date < %s;
-            """, (date, start_ts, end_ts))
+                AND date >= %s
+                AND date < %s;
+                """, (date, start_ts, end_ts))
             return cursor.fetchone()
     except Exception as e:
         raise e
+
         
