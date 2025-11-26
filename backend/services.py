@@ -1,6 +1,21 @@
 
 
 def get_run(db_conn,limit):
+    """
+    Return the latest run from the `variable_log_string` table.
+
+    Parameters
+    ----------
+    db_conn :
+        An open database connection.
+    limit :
+        Number of latest rows to consider.
+
+    Returns
+    -------
+    dict | None
+        A row with keys `id_var`, `date`, `value`, or None if no data.
+    """
     try:
         #print(conn)
         cursor = db_conn.cursor()
@@ -14,6 +29,23 @@ def get_run(db_conn,limit):
         raise e
     
 def get_active_zones(db_conn,limit=1):
+    """
+    Return the latest values for the configured zones.
+
+    Parameters
+    ----------
+    db_conn :
+        An open database connection.
+    limit : int, optional
+        Number of latest rows per zone to consider (default is 1).
+
+    Returns
+    -------
+    dict
+        Dictionary of the form ``{"zones": [v1, v2, v3, v4]}`` where each
+        entry is the latest value for that zone, or ``None`` if no data
+        exists for that zone.
+    """
     zone1 = 806
     zone2 = 884
     zone3 = 798
@@ -63,6 +95,25 @@ def get_daily_average_temp(db_conn, date):
         raise e
     
 def get_daily_average_spindle_load(db_conn, date):
+    """
+    Compute the daily average temperature for a given date.
+
+    The data is read from the ``variable_log_float`` table for ``id_var = 618``,
+    using all samples within the given calendar day.
+
+    Parameters
+    ----------
+    db_conn :
+        An open database connection.
+    date : str
+        Date string in the format ``"YYYY-MM-DD"``.
+
+    Returns
+    -------
+    dict | None
+        A row with keys ``log_time`` (date) and ``avg_temp`` (numeric), or
+        ``None`` if no data exists for that date.
+    """
     try:
         # Convert string to datetime
         date = datetime.strptime(date, "%Y-%m-%d")
