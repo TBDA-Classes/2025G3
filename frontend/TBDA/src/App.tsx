@@ -24,11 +24,15 @@ function App(): JSX.Element {
     avg_spindle: number;
   }
 
+
+
   const testData = {dataName: "Energy", dataValue: "321 kWh"}
 
   const [selectedDate, setSelectedDate] = useState<string>("");
   const [dailyTemp, setDailyTemp] = useState<DailyTmp | null>(null);
   const [dailySpindle, setDailySpindle] = useState<DailySpin | null>(null);
+  const [dailyAlerts, setDailyAlerts] = useState<number | null>(null);
+
 
   useEffect(() => {
     const fetchDailyTemp = async () => {
@@ -62,9 +66,27 @@ function App(): JSX.Element {
       }
     };
 
+    const fetchDailyAlerts = async () => {
+      try {
+        const res = await axios.get('http://localhost:8000/api/daily_alerts', {
+          params: { date: selectedDate }
+        });
+
+        //const data = Array.isArray(res.data) ? res.data[0] : res.data;
+
+        setDailyAlerts(res.data.num_alarms);
+        console.log("setDailyAlerts", dailyAlerts);
+
+      } catch(err) {
+        console.error("Error fetching daily alerts", err);
+      }
+    };
+
+
     if (selectedDate) {
       fetchDailyTemp();
       fetchDailySpindle();
+      fetchDailyAlerts();
     }
   }, [selectedDate])
 
@@ -78,8 +100,8 @@ function App(): JSX.Element {
         <div className="information-boxes-container">
           <InformationBox dataName="Average Daily Temperature" dataValue={dailyTemp?.avg_temp ?? "NaN"}/>
           <InformationBox dataName="Average Daily Spindle Load" dataValue={dailySpindle?.avg_spindle ?? "NaN"}/>
+          <InformationBox dataName="Daily Alerts" dataValue={dailyAlerts ?? "NaN"}/>
           {/*<InformationBox dataName={testData.dataName} dataValue={testData.dataValue}/>
-          <InformationBox dataName={testData.dataName} dataValue={testData.dataValue}/>
           <InformationBox dataName={testData.dataName} dataValue={testData.dataValue}/>
          */}</div>
         <div>
