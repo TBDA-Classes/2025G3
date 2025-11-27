@@ -11,7 +11,8 @@ This so the team can analyse and see different data which will be important for 
 
 ## 24/11-25
 - A code for extraction of system status as on/off has been developed where the querie counts all the variables that are active every hour during set dates. By looking at when the variables are not active, we can see when the machine is on or off. This is done with the following querie that looks at all the variables in variable_log_float instead of specific IDs.
-q = text("""
+
+- q = text("""
     SELECT
         DATE(to_timestamp(date/1000)) AS day,
         EXTRACT(HOUR FROM to_timestamp(date/1000)) AS hour,
@@ -21,6 +22,7 @@ q = text("""
     GROUP BY day, hour
     ORDER BY day, hour;
 """)
+
 This is the result for a five day period in january in 2015.
 
 <img width="2866" height="985" alt="Screenshot 2025-11-27 162236" src="https://github.com/user-attachments/assets/6ee18e92-20a4-4877-bd87-ee422db93647" />
