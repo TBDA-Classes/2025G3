@@ -35,22 +35,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-""" @app.get("/api/recent_run")
-def get_run(limit: int = 1):
-
-    try:
-        row = services.get_run(db_conn,limit)
-        if row is None:
-            return {}
-        return {
-            "date": row['date'].isoformat(),
-            "value": row['value']
-        }
-    except Exception as e:
-        #db_conn.rollback()
-        raise HTTPException(status_code=500, detail=str(e)) """
-    
     
 @app.get("/api/daily_temp_avg")
 def get_daily_temp_avg(date: str = Query(...)):
@@ -61,12 +45,22 @@ def get_daily_temp_avg(date: str = Query(...)):
 
         raise HTTPException(status_code=500, detail=str(e))
     
-@app.get("/api/daily_alerts")
-def get_daily_alerts(date: str = Query(...)):
+@app.get("/api/number_daily_alerts")
+def get_daily_alerts_number(
+        date: str = Query(...)):
     try:
-        return services.get_daily_alerts(db_conn, date)
+        return services.get_number_daily_alerts(db_conn, date)
     except Exception as e:
         db_conn.rollback()
+
+@app.get("/api/critical_alerts")
+def get_daily_alerts_number(
+        date: str = Query(...)):
+    try:
+        return services.get_critical_alerts(db_conn, date)
+    except Exception as e:
+        db_conn.rollback()
+
 
         raise HTTPException(status_code=500, detail=str(e))
 @app.get("/api/daily_spindle_avg")
