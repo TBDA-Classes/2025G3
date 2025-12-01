@@ -1,76 +1,4 @@
 
-
-def get_run(db_conn,limit):
-    """
-    Return the latest run from the `variable_log_string` table.
-
-    Parameters
-    ----------
-    db_conn :
-        An open database connection.
-    limit :
-        Number of latest rows to consider.
-
-    Returns
-    -------
-    dict | None
-        A row with keys `id_var`, `date`, `value`, or None if no data.
-    """
-    try:
-        #print(conn)
-        cursor = db_conn.cursor()
-        cursor.execute(f"""SELECT "id_var", TO_TIMESTAMP("date"/1000) AS date, "value"
-                       FROM "public"."variable_log_string" 
-                       WHERE id_var=890 ORDER BY date DESC LIMIT {limit}""")
-        rows = cursor.fetchone()
-        cursor.close()
-        return rows
-    except Exception as e:
-        raise e
-    
-def get_active_zones(db_conn,limit=1):
-    """
-    Return the latest values for the configured zones.
-
-    Parameters
-    ----------
-    db_conn :
-        An open database connection.
-    limit : int, optional
-        Number of latest rows per zone to consider (default is 1).
-
-    Returns
-    -------
-    dict
-        Dictionary of the form ``{"zones": [v1, v2, v3, v4]}`` where each
-        entry is the latest value for that zone, or ``None`` if no data
-        exists for that zone.
-    """
-    zone1 = 806
-    zone2 = 884
-    zone3 = 798
-    zone4 = 877
-
-    zones = [zone1,zone2,zone3,zone4]
-
-    zone_values = []
-
-    try:
-        cursor = db_conn.cursor()
-        zone_values = []
-
-        for id in zones:
-            cursor.execute(f"""SELECT "id_var", TO_TIMESTAMP("date"/1000) AS date, "value"
-                       FROM "public"."variable_log_float" 
-                       WHERE id_var={id} ORDER BY date DESC LIMIT {limit};""")
-            result = cursor.fetchone()
-            zone_values.append(result['value'] if result else None)
-        return {"zones": zone_values}
-
-    except Exception as e:
-        #raise HTTPException(status_code=500, detail=str(e))
-        raise e
-
 from datetime import datetime, timedelta
 
 def get_daily_average_temp(db_conn, date):
@@ -96,7 +24,43 @@ def get_daily_average_temp(db_conn, date):
     
 
 import json
-def get_daily_alerts(db_conn, date):
+
+def get_critical_alerts(db_conn, date):
+    try:
+        # Convert string to datetime
+        date = datetime.strptime(date, "%Y-%m-%d")
+        #date_with_time = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
+        start_ts = int(date.timestamp() * 1000)          # start of day in ms
+        end_ts = int((date + timedelta(days=1)).timestamp() * 1000)  # start of next day in ms
+
+        print(date)
+        with db_conn.cursor() as cursor:
+            cursor.execute("""
+            SELECT
+                TO_TIMESTAMP(t.date / 1000) AS log_time,
+                (event_data ->> 1) AS event_description
+            FROM
+                public.variable_log_string t,
+                jsonb_array_elements(t.value::jsonb) AS event_data
+            WHERE
+                t.id_var = 447
+                AND t.date >= %s
+                AND t.date < %s
+                AND (event_data ->> 1) IN (
+                    'EMERGENCIA EXTERNA',
+                    'PARADA DE AVANCES',
+                    'Falta tensión externa reles'
+                )
+            ORDER BY
+                t.date;
+            """, (start_ts, end_ts))
+            return cursor.fetchall()
+
+            
+    except Exception as e:
+        raise e
+
+def get_number_daily_alerts(db_conn, date):
     try:
         # Convert string to datetime
         date = datetime.strptime(date, "%Y-%m-%d")
@@ -106,20 +70,19 @@ def get_daily_alerts(db_conn, date):
         print(date)
         with db_conn.cursor() as cursor:
             cursor.execute("""
-            SELECT %s::date AS log_time,
-              value
+            SELECT COUNT(*) as alarm_snapshot_count
             FROM public.variable_log_string
             WHERE id_var = 447
-                AND date >= %s
-                AND date < %s
-            ORDER BY date;
-            """, (date, start_ts, end_ts))
+              AND date >= %s
+              AND date < %s
+              AND value::text != '[]' 
+            """, (start_ts, end_ts))
             #return len(cursor.fetchone())
 
-            row = cursor.fetchone()
-            value_str = row["value"]
-            alarms = json.loads(value_str)
-            return {"num_alarms": len(alarms)}  # always a JSON object
+            result = cursor.fetchone()
+            
+            count = result["alarm_snapshot_count"] if result else 0
+            return {"num_alarms": count}
             #return cursor.fetchone()
             
     except Exception as e:

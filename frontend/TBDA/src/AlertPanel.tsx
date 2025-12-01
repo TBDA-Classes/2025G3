@@ -1,21 +1,27 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+
+import type { CriticalAlerts } from "./App";
 
 import "./style.css"
+import AlertCard from "./AlertCard";
 
+interface AlertPanelProps {
+  alerts: CriticalAlerts[];
+}
 
-export default function AlertPanel(){
+export default function AlertPanel({alerts}: AlertPanelProps){
 
-    useEffect(() => {
-        
-    },[]);
+  console.log(alerts)
 
     return (
-        <div className="sub-main-panel">
-          <div className="graphs"></div>
-          <div className="alerts">
-            <h3>Alerts & Events</h3>
-          </div>
+          <div className="alert-panel">
+            <h1>Critical Alerts</h1>
+                {alerts.length === 0 ? (
+                  <p>No Critical alerts for this date.</p>
+                ) : (
+                  alerts.map((alertItem, index) => (
+                    <AlertCard key={index} alert={alertItem}/>
+                  ))
+                )}
         </div>
     )
 
