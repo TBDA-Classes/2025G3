@@ -5,6 +5,12 @@ import FilterPanel from "./FilterPanel";
 import AlertPanel from "./AlertPanel";
 import axios from "axios";
 
+
+export interface CriticalAlerts {
+    log_time: string;
+    event_description: string;
+  }
+
 function App(): JSX.Element {
 
   /* const informationView = (): void => {
@@ -25,13 +31,11 @@ function App(): JSX.Element {
   }
 
 
-
-  const testData = {dataName: "Energy", dataValue: "321 kWh"}
-
   const [selectedDate, setSelectedDate] = useState<string>("");
   const [dailyTemp, setDailyTemp] = useState<DailyTmp | null>(null);
   const [dailySpindle, setDailySpindle] = useState<DailySpin | null>(null);
   const [dailyAlerts, setDailyAlerts] = useState<number | null>(null);
+  const [criticalAlerts, setCriticalAlerts] = useState<CriticalAlerts[]>([])
 
 
   useEffect(() => {
@@ -44,7 +48,6 @@ function App(): JSX.Element {
         const data = Array.isArray(res.data) ? res.data[0] : res.data;
 
         setDailyTemp(data);
-        console.log("setDailyTemp", dailyTemp);
 
       } catch(err) {
         console.error("Error fetching daily temperature", err);
@@ -59,7 +62,6 @@ function App(): JSX.Element {
         const data = Array.isArray(res.data) ? res.data[0] : res.data;
 
         setDailySpindle(data);
-        console.log("dailySpindle", dailySpindle);
 
       } catch(err) {
         console.error("Error fetching daily spindle load", err);
@@ -68,14 +70,28 @@ function App(): JSX.Element {
 
     const fetchDailyAlerts = async () => {
       try {
-        const res = await axios.get('http://localhost:8000/api/daily_alerts', {
+        const res = await axios.get('http://localhost:8000/api/number_daily_alerts', {
           params: { date: selectedDate }
         });
 
         //const data = Array.isArray(res.data) ? res.data[0] : res.data;
 
         setDailyAlerts(res.data.num_alarms);
-        console.log("setDailyAlerts", dailyAlerts);
+
+      } catch(err) {
+        console.error("Error fetching daily alerts", err);
+      }
+    };
+
+    const fetchCriticalAlerts = async () => {
+      try {
+        const res = await axios.get('http://localhost:8000/api/critical_alerts', {
+          params: { date: selectedDate }
+        });
+
+        const data = Array.isArray(res.data) ? res.data : [];
+
+        setCriticalAlerts(data);
 
       } catch(err) {
         console.error("Error fetching daily alerts", err);
@@ -87,6 +103,7 @@ function App(): JSX.Element {
       fetchDailyTemp();
       fetchDailySpindle();
       fetchDailyAlerts();
+      fetchCriticalAlerts();
     }
   }, [selectedDate])
 
@@ -105,7 +122,10 @@ function App(): JSX.Element {
           <InformationBox dataName={testData.dataName} dataValue={testData.dataValue}/>
          */}</div>
         <div>
-          <AlertPanel/>
+          <div className="sub-main-panel">
+            <div className="graphs"></div>
+            <AlertPanel alerts={criticalAlerts}/>
+          </div>
         </div>
       </div>
     </div>
