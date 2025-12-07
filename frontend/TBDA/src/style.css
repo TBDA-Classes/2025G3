@@ -141,3 +141,25 @@
     color: rgb(255, 71, 71);
 
 }
+
+/* In your App.css or similar */
+.graphs {
+    flex: 3; /* Take up available space next to alert panel */
+    padding: 10px;
+    background-color: var(--secondary-bg-color);
+    border-radius: 8px;
+    overflow: hidden; /* Important for Recharts responsive container */
+}
+
+.chart-container {
+    padding: 15px 15px 0 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.chart-container h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #555;
+}

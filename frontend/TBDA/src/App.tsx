@@ -5,6 +5,7 @@ import FilterPanel from "./FilterPanel";
 import AlertPanel from "./AlertPanel";
 import axios from "axios";
 
+import HourlyChart from "./HourlyChart";
 
 export interface CriticalAlerts {
     log_time: string;
@@ -13,11 +14,6 @@ export interface CriticalAlerts {
 
 function App(): JSX.Element {
 
-  /* const informationView = (): void => {
-    setInformation("General")
-  }; */
-
-  //const [information, setInformation] = useState<String>("home");
 
 
   interface DailyTmp {
@@ -31,12 +27,19 @@ function App(): JSX.Element {
   }
 
 
+  interface HourlyData {
+  log_hour: string;
+  avg_temp: number | null;
+  avg_spindle: number | null;
+}
+
+
   const [selectedDate, setSelectedDate] = useState<string>("");
   const [dailyTemp, setDailyTemp] = useState<DailyTmp | null>(null);
   const [dailySpindle, setDailySpindle] = useState<DailySpin | null>(null);
   const [dailyAlerts, setDailyAlerts] = useState<number | null>(null);
   const [criticalAlerts, setCriticalAlerts] = useState<CriticalAlerts[]>([])
-
+  const [graphData, setGraphData] = useState<HourlyData[]>([]);
 
   useEffect(() => {
     const fetchDailyTemp = async () => {
@@ -74,7 +77,6 @@ function App(): JSX.Element {
           params: { date: selectedDate }
         });
 
-        //const data = Array.isArray(res.data) ? res.data[0] : res.data;
 
         setDailyAlerts(res.data.num_alarms);
 
@@ -99,11 +101,25 @@ function App(): JSX.Element {
     };
 
 
+    const fetchGraphData = async () => {
+      try {
+        const res = await axios.get('http://localhost:8000/api/hourly_combined', {
+          params: { date: selectedDate }
+        });
+        const data = Array.isArray(res.data) ? res.data : [];
+        setGraphData(data);
+      } catch(err) {
+        console.error("Error fetching graph data", err);
+      }
+    };
+
+
     if (selectedDate) {
       fetchDailyTemp();
       fetchDailySpindle();
       fetchDailyAlerts();
       fetchCriticalAlerts();
+      fetchGraphData();
     }
   }, [selectedDate])
 
@@ -118,12 +134,17 @@ function App(): JSX.Element {
           <InformationBox dataName="Average Daily Temperature" dataValue={dailyTemp?.avg_temp ?? "NaN"}/>
           <InformationBox dataName="Average Daily Spindle Load" dataValue={dailySpindle?.avg_spindle ?? "NaN"}/>
           <InformationBox dataName="Daily Alerts" dataValue={dailyAlerts ?? "NaN"}/>
-          {/*<InformationBox dataName={testData.dataName} dataValue={testData.dataValue}/>
-          <InformationBox dataName={testData.dataName} dataValue={testData.dataValue}/>
-         */}</div>
+
+         </div>
         <div>
           <div className="sub-main-panel">
-            <div className="graphs"></div>
+            <div className="graphs">
+               {selectedDate && graphData.length > 0 ? (
+                  <HourlyChart data={graphData} />
+               ) : (
+                 <div style={{color:"white"}}>Select a date to view graph</div>
+               )}
+            </div>
             <AlertPanel alerts={criticalAlerts}/>
           </div>
         </div>
