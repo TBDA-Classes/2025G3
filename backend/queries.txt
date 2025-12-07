@@ -32,3 +32,14 @@ FROM variable_log_float
 WHERE id_var = 618
   AND TO_TIMESTAMP(date / 1000)::date = '2020-12-28'
 GROUP BY log_time;
+
+
+SELECT
+    TO_TIMESTAMP(FLOOR((date / 1000) / 3600) * 3600) AS log_time,
+    ROUND(AVG(value)::numeric, 1) AS avg_temp
+FROM variable_log_float
+WHERE id_var = 630
+  AND date >= EXTRACT(EPOCH FROM TIMESTAMP '2020-12-28 00:00:00') * 1000
+  AND date <  EXTRACT(EPOCH FROM TIMESTAMP '2020-12-29 00:00:00') * 1000
+GROUP BY log_time
+ORDER BY log_time;

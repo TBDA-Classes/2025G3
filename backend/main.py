@@ -35,7 +35,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-    
+
 @app.get("/api/daily_temp_avg")
 def get_daily_temp_avg(date: str = Query(...)):
     try:
@@ -52,17 +52,17 @@ def get_daily_alerts_number(
         return services.get_number_daily_alerts(db_conn, date)
     except Exception as e:
         db_conn.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/api/critical_alerts")
-def get_daily_alerts_number(
+def get_critical_alerts_data(
         date: str = Query(...)):
     try:
         return services.get_critical_alerts(db_conn, date)
     except Exception as e:
         db_conn.rollback()
-
-
         raise HTTPException(status_code=500, detail=str(e))
+
 @app.get("/api/daily_spindle_avg")
 def get_daily_spindle_avg(date: str = Query(...)):
     try:
@@ -70,4 +70,30 @@ def get_daily_spindle_avg(date: str = Query(...)):
     except Exception as e:
         db_conn.rollback()
 
+        raise HTTPException(status_code=500, detail=str(e))
+    
+
+@app.get("/api/hourly_spindle_avg")
+def get_hourly_spindle_avg(date: str = Query(...)):
+    try:
+        return services.get_hourly_average_spindle_load(db_conn, date)
+    except Exception as e:
+        db_conn.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/hourly_temp_avg")
+def get_hourly_temp_avg(date: str = Query(...)):
+    try:
+        return services.get_hourly_average_temp(db_conn, date)
+    except Exception as e:
+        db_conn.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
+    
+# Add this to main.py
+@app.get("/api/hourly_combined")
+def get_hourly_combined(date: str = Query(...)):
+    try:
+        return services.get_hourly_combined_stats(db_conn, date)
+    except Exception as e:
+        db_conn.rollback()
         raise HTTPException(status_code=500, detail=str(e))
