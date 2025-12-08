@@ -28,21 +28,18 @@
 |------|------|------------------|
 | **Product Owner** | Joaquín Ordieres | Defines business case & priorities |
 | **Scrum Master** | Johan | Facilitates Scrum, syncs with PO, manages sprints & backlog |
-| **Architect / Tech Liaison** | Federico | Defines architecture, ensures integration between teams |
-| **Documentation Lead** | Maxime | Maintains structure & integrates team deliverables |
-| **Data Engineers** | Tim, Laurène, Antonia | ETL, data cleaning, feature extraction |
-| **Analysts / Modelers** | Max, Rickard, Sjoerd | Pattern detection, anomaly analysis, KPIs |
+| **Architect/Documentation** | Federico | Defines architecture, ensures integration between teams |
+| **Documentation** | Maxime | Maintains structure & integrates team deliverables |
+| **Backend + Extraction** | Tim, Laurène, Antonia Max, Rickard, Sjoerd | Pattern detection, anomaly analysis, KPIs ETL, data cleaning, feature extraction |
 | **UI / Visualization Team** | Liz, Anna, Keivan | Dashboard design, visualization, frontend logic |
 
 ---
 
-## 3. Workflow 🔁
+## 3. Workflow 
 
-### 3.1 Sprint Cadence ⏱️
+### 3.1 Sprint Cadence 
 - **Sprint length:** 2 weeks  
-- **Planning:** Mondays (45 min)  
-- **Review & Demo:** Fridays or before lecture (30–45 min)  
-- **Retrospective:** End of sprint (20–30 min, on Teams/WhatsApp for now)
+- **Retrospective:** End of sprint (10 min, at lecture, with the ones who aren't absent)
 
 ### 3.2 Scrum Board 📋 
 **ClickUp Dashboard (Invite via email needed):** [TBDA G3 Board](https://app.clickup.com/90151811895/v/s/90157519304)
@@ -60,9 +57,8 @@ Backlog → Next Sprint → Sprint Backlog → Dev → Code Review → Testing �
 - Documentation updated  
 - Card moved to “Done (Sprint X)”  
 
-## 4. Communication 💬
-Channel	Purpose
-Teams / WhatsApp	Daily syncs, quick coordination
-Trello	Task tracking, sprint planning
-GitHub	Code + Docs + Reviews
-Google Drive	Reports & shared files
+## 4. Communication 
+- **WhatsApp:**  Quick coordination
+- **Trello:**	Task tracking, sprint planning
+- **GitHub:**	Code + Docs + Reviews
+- **Google Drive:**	Reports & shared files

@@ -1,4 +1,5 @@
 site_name: Tools for Big Data Analytics - Group 3
+
 theme:
   name: material
   palette:
@@ -6,24 +7,43 @@ theme:
     accent: light blue
 
 markdown_extensions:
-  - pymdownx.snippets   # enables --8<-- includes
+  - admonition
+  - pymdownx.snippets
 
 plugins:
+  - search
   - mkdocstrings:
       default_handler: python
+      handlers:
+        python:
+          paths: ["."]
+          options:
+            docstring_style: google
+            show_source: false
+            show_root_heading: true
+            show_root_full_path: false
 
 nav:
   - Home: index.md
   - Documentation overview: overview.md
   - Architecture: architecture.md
-  - Sprint Summaries:
-      - Sprint 1 Summary: sprint-summaries/sprint1.md
-      - Sprint 2 Summary: sprint-summaries/sprint2.md
-      - Sprint 3 Summary: sprint-summaries/sprint3.md
-  - Frontend:
-      - Overview: frontend/ui.md
+
   - Backend:
-      - Overview: backend/api.md
-  - Data analysis / Extraction:
-      - Overview: extraction/data_extraction.md    
-  
+      - Overview: backend/index.md
+      - API (FastAPI): backend/api.md
+      - Services: backend/services.md
+
+  - Extraction / Data analysis:
+      - Overview: extraction/data_analysis.md
+
+  - Frontend:
+      - UI overview: frontend/ui.md
+      - Visualizations: frontend/ui_visualization.md
+
+  - Client:
+      - User manual: client/user_manual.md
+
+  - Sprint summaries:
+      - Sprint 1: sprint-summaries/sprint1.md
+      - Sprint 2: sprint-summaries/sprint2.md
+      - Sprint 3: sprint-summaries/sprint3.md

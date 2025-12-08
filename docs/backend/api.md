@@ -1,23 +1,25 @@
-# Backend Overview
-
-## What this module does
-- Provides database access to recent runs and zone status.
-- Computes daily averages for temperature and spindle load.
-- Used by the FastAPI routes in `main.py`.
+# Backend API
 
 ## How to run the backend
+From the project root:
+
 ```bash
 cd backend
 source .venv/bin/activate
-python -m uvicorn main:app --reload
+uvicorn backend.main:app --reload
 ```
 
-## Code Reference
+## FastAPI endpoints
 
-::: backend.services
+::: backend.main
     options:
+      members:
+        - get_daily_temp_avg
+        - get_daily_alerts_number
+        - get_critical_alerts_data
+        - get_daily_spindle_avg
+        - get_hourly_spindle_avg
+        - get_hourly_temp_avg
+        - get_hourly_combined
       show_root_heading: false
-      show_root_toc_entry: false
-      heading_level: 3
       show_source: false
-      members_order: source

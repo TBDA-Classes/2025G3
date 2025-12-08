@@ -2,6 +2,15 @@
 from datetime import datetime, timedelta
 
 def get_daily_average_temp(db_conn, date):
+    """Compute the average temperature for a single day.
+
+    Args:
+        db_conn: PostgreSQL connection.
+        date: ISO date string YYYY-MM-DD.
+
+    Returns:
+        Dict with log_time and avg_temp.
+    """
     try:
         # Convert string to datetime
         date = datetime.strptime(date, "%Y-%m-%d")
@@ -21,13 +30,17 @@ def get_daily_average_temp(db_conn, date):
             return cursor.fetchone()
     except Exception as e:
         raise e
-    
-from datetime import datetime, timedelta
-
-
-import json
 
 def get_critical_alerts(db_conn, date):
+    """Fetch all critical alerts for the specified date.
+
+    Args:
+        db_conn: PostgreSQL connection.
+        date: ISO date string YYYY-MM-DD.
+
+    Returns:
+        List of dicts with timestamp and alert description.
+    """
     try:
         date = datetime.strptime(date, "%Y-%m-%d")
         start_ts = int(date.timestamp() * 1000)          # start of day in ms
@@ -61,6 +74,15 @@ def get_critical_alerts(db_conn, date):
         raise e
 
 def get_number_daily_alerts(db_conn, date):
+    """Count how many alert snapshots exist for the date.
+
+    Args:
+        db_conn: PostgreSQL connection.
+        date: ISO date string YYYY-MM-DD.
+
+    Returns:
+        Dict containing the number of alerts.
+    """
     try:
         date = datetime.strptime(date, "%Y-%m-%d")
         start_ts = int(date.timestamp() * 1000)          # start of day in ms
@@ -85,7 +107,15 @@ def get_number_daily_alerts(db_conn, date):
         raise e
 
 def get_daily_average_spindle_load(db_conn, date):
+    """Compute the average spindle load for a single day.
 
+    Args:
+        db_conn: PostgreSQL connection.
+        date: ISO date string YYYY-MM-DD.
+
+    Returns:
+        Dict with log_time and avg_spindle.
+    """
     try:
         date = datetime.strptime(date, "%Y-%m-%d")
         start_ts = int(date.timestamp() * 1000)  # start of day in ms
@@ -106,6 +136,15 @@ def get_daily_average_spindle_load(db_conn, date):
 
     
 def get_hourly_combined_stats(db_conn, date_str):
+    """Return hourly averages of temperature and spindle load.
+
+    Args:
+        db_conn: PostgreSQL connection.
+        date_str: ISO date string YYYY-MM-DD.
+
+    Returns:
+        List of dicts with hour, avg_temp, and avg_spindle.
+    """
     try:
         target_date = datetime.strptime(date_str, "%Y-%m-%d")
         start_ts = int(target_date.timestamp() * 1000)
