@@ -30,4 +30,12 @@ This is the result for a five day period in january in 2015.
 <img width="2781" height="1401" alt="Screenshot 2025-11-27 162216" src="https://github.com/user-attachments/assets/cf7d71f2-da2e-47cb-8d33-b39b5e59e6e4" />
 
 The full code can be seen in the extraction folder under system_status.py 
+
+## 03/12-25
+- Another code for extraction of system status as on/off/Idle has been developed that instead of counting all the variables that are active every hour uses the variable_id 597 which is system_in_progess. This means that when the system is of, it returns nodata. When it is in idle it returns zero and when it is on it returns a one. This is then shown in graph that shows colors with red for off, yellow for idle and green for on.
+
+<img width="2855" height="1348" alt="Screenshot 2025-12-09 143150" src="https://github.com/user-attachments/assets/46e28aeb-e2fd-43f5-a835-e419f6e9cfbe" />
+
+<img width="2856" height="1330" alt="Screenshot 2025-12-09 143211" src="https://github.com/user-attachments/assets/20681286-baa0-44d7-a0d4-b3c858bc8c4b" />
+
 ## Code Reference
