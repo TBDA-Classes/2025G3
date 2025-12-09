@@ -6,6 +6,7 @@ From the project root:
 ```bash
 cd backend
 source .venv/bin/activate
+cd ..
 uvicorn backend.main:app --reload
 ```
 
