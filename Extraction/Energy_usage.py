@@ -100,3 +100,5 @@ df_hourly = df["power_kW"].resample("1H").mean().reset_index()
 # 8. Print only hourly averages
 # ---------------------------------------------------------
 print(df_hourly)
+
+//max
