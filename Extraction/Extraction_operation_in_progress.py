@@ -84,8 +84,12 @@ for i in range(1, len(df)):
         start_time = current_time
         prev_state = current_state
 
-# Append last segment
-intervals.append((start_time, df["real_date"].iloc[-1], prev_state))
+# -----------------------------
+# NEW: Extend final segment to day end
+# -----------------------------
+day_end = pd.to_datetime(end_ts)
+intervals.append((start_time, day_end, prev_state))
+
 
 # Convert intervals to matplotlib float-date format
 bar_data = []
@@ -130,4 +134,4 @@ ax.legend(handles=legend_patches, loc="upper right")
 plt.grid(axis="x", linestyle="--", alpha=0.3)
 plt.tight_layout()
 plt.show()
-
+print(df[['real_date', 'value', 'state']].to_string(index=False))
