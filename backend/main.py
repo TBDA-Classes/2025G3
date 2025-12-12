@@ -137,7 +137,6 @@ def get_hourly_temp_avg(date: str = Query(...)):
         db_conn.rollback()
         raise HTTPException(status_code=500, detail=str(e))
     
-# Add this to main.py
 @app.get("/api/hourly_combined")
 def get_hourly_combined(date: str = Query(...)):
     """Return hourly averages of both temperature and spindle load.
@@ -152,4 +151,25 @@ def get_hourly_combined(date: str = Query(...)):
         return services.get_hourly_combined_stats(db_conn, date)
     except Exception as e:
         db_conn.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
+    
+@app.get("/api/energy_usage")
+def get_energy_usage(date: str = Query(...)):
+    """Return ....
+
+    Args:
+
+    Returns:
+    """
+    try:
+        return services.get_energy_usage(db_conn, date)
+    except Exception as e:
+        db_conn.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/energy_usage/daily")
+def get_daily_energy_avg(date: str = Query(...)):
+    try:
+        return services.get_daily_average_power(db_conn, date)
+    except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

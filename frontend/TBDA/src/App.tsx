@@ -31,8 +31,13 @@ function App(): JSX.Element {
   log_hour: string;
   avg_temp: number | null;
   avg_spindle: number | null;
+  power_kW: number | null;
 }
 
+interface DailyPower {
+    date: string;
+    avg_power_kW: number;
+}
 
   const [selectedDate, setSelectedDate] = useState<string>("");
   const [dailyTemp, setDailyTemp] = useState<DailyTmp | null>(null);
@@ -40,6 +45,8 @@ function App(): JSX.Element {
   const [dailyAlerts, setDailyAlerts] = useState<number | null>(null);
   const [criticalAlerts, setCriticalAlerts] = useState<CriticalAlerts[]>([])
   const [graphData, setGraphData] = useState<HourlyData[]>([]);
+  const [dailyPowerData, setDailyPowerData] = useState<DailyPower | null>(null);
+
 
   useEffect(() => {
     const fetchDailyTemp = async () => {
@@ -113,6 +120,17 @@ function App(): JSX.Element {
       }
     };
 
+    const fetchDailyPower = async () => {
+        try {
+          const res = await axios.get('http://localhost:8000/api/energy_usage/daily', {
+            params: { date: selectedDate }
+          });
+          setDailyPowerData(res.data);
+        } catch(err) {
+          console.error("Error fetching daily power", err);
+        }
+      };
+
 
     if (selectedDate) {
       fetchDailyTemp();
@@ -120,6 +138,7 @@ function App(): JSX.Element {
       fetchDailyAlerts();
       fetchCriticalAlerts();
       fetchGraphData();
+      fetchDailyPower();
     }
   }, [selectedDate])
 
@@ -131,10 +150,13 @@ function App(): JSX.Element {
       <div className="main-panel">
         <FilterPanel selectedDate={selectedDate} setSelectedDate={setSelectedDate}/>
         <div className="information-boxes-container">
-          <InformationBox dataName="Average Daily Temperature" dataValue={dailyTemp?.avg_temp ?? "NaN"}/>
-          <InformationBox dataName="Average Daily Spindle Load" dataValue={dailySpindle?.avg_spindle ?? "NaN"}/>
+          <InformationBox dataName="Average Daily Temperature" dataValue={dailyTemp?.avg_temp ? `${dailyTemp.avg_temp} °C` : "NaN"}/>
+          <InformationBox dataName="Average Daily Spindle Load" dataValue={dailySpindle?.avg_spindle ? `${dailySpindle.avg_spindle} %` : "NaN"}/>
           <InformationBox dataName="Daily Alerts" dataValue={dailyAlerts ?? "NaN"}/>
-
+          <InformationBox 
+              dataName="Average Daily Power" 
+              dataValue={dailyPowerData?.avg_power_kW ? `${dailyPowerData.avg_power_kW} kW` : "NaN"} 
+          />
          </div>
         <div>
           <div className="sub-main-panel">

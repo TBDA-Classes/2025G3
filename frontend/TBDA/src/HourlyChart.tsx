@@ -37,6 +37,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
           <p style={{marginBottom: '5px', fontWeight: 'bold'}}>{`Time: ${formatXAxis(label)}`}</p>
           {payload.map((entry: any, index: number) => (
              <p key={index} style={{ color: entry.color, margin: 0 }}>
+                {/* Dynamically display name, value and unit */}
                 {`${entry.name}: ${entry.value} ${entry.unit}`}
              </p>
           ))}
@@ -65,7 +66,7 @@ const HourlyChart: React.FC<HourlyChartProps> = ({ data }) => {
           data={data}
           margin={{ top: 10, right: 30, left: 10, bottom: 5 }}
         >
-          {/* Grid lines with low opacity to blend into dark bg */}
+          {/* Subtle grid */}
           <CartesianGrid strokeDasharray="3 3" stroke="white" opacity={0.1} vertical={false} />
           
           <XAxis 
@@ -76,27 +77,44 @@ const HourlyChart: React.FC<HourlyChartProps> = ({ data }) => {
              minTickGap={15}
           />
           
-          {/* LEFT AXIS: Temperature (matches avg_temp) */}
+          {/* --- AXES --- */}
+
+          {/* 1. LEFT AXIS: Temperature */}
           <YAxis 
             yAxisId="left" 
             stroke="var(--accent-color)" 
             tick={{fill: 'var(--accent-color)'}}
             width={40}
+            label={{ value: '°C', position: 'insideTopLeft', dy: -10, fill: 'var(--accent-color)', fontSize: 10 }}
           />
 
-          {/* RIGHT AXIS: Spindle Load (matches avg_spindle) */}
+          {/* 2. RIGHT AXIS: Spindle Load */}
           <YAxis 
             yAxisId="right" 
             orientation="right" 
             stroke="#ff7300" 
             tick={{fill: '#ff7300'}}
             width={40}
+            label={{ value: '%', position: 'insideTopRight', dy: -10, fill: '#ff7300', fontSize: 10 }}
+          />
+
+          {/* 3. HIDDEN AXIS for Power (kW) 
+              We give it its own domain so it scales independently (autoscales to fit data) 
+              but we hide the visual axis line/numbers to keep UI clean.
+          */}
+          <YAxis 
+            yAxisId="power" 
+            orientation="left" 
+            hide={true} 
+            domain={[0, 'auto']} 
           />
 
           <Tooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ paddingTop: '10px' }}/>
 
-          {/* LINE 1: Temperature (Cyan) */}
+          {/* --- LINES --- */}
+
+          {/* LINE 1: Temperature (Cyan/Blue) */}
           <Line 
             yAxisId="left"
             type="monotone" 
@@ -104,7 +122,7 @@ const HourlyChart: React.FC<HourlyChartProps> = ({ data }) => {
             name="Temperature"
             unit="°C"
             stroke="var(--accent-color)" 
-            strokeWidth={3}
+            strokeWidth={2}
             dot={false}
             activeDot={{ r: 6, strokeWidth: 0 }} 
           />
@@ -117,10 +135,25 @@ const HourlyChart: React.FC<HourlyChartProps> = ({ data }) => {
             name="Spindle Load"
             unit="%"
             stroke="#ff7300" 
-            strokeWidth={3}
+            strokeWidth={2}
             dot={false} 
             activeDot={{ r: 6, strokeWidth: 0 }} 
           />
+
+          {/* LINE 3: Power (Green Dashed) */}
+          <Line 
+            yAxisId="power"
+            type="monotone" 
+            dataKey="power_kW" 
+            name="Power Usage"
+            unit="kW"
+            stroke="#82ca9d" 
+            strokeWidth={2}
+            strokeDasharray="5 5" // Makes the line dashed
+            dot={false} 
+            activeDot={{ r: 6, strokeWidth: 0 }} 
+          />
+
         </LineChart>
       </ResponsiveContainer>
     </div>

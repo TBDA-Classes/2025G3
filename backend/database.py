@@ -4,8 +4,9 @@ from dotenv import load_dotenv
 import os
 
 
-load_dotenv()
-print(os.getenv("DB_PASSWORD"))
+env_path = "backend/" + ".env"
+
+load_dotenv(dotenv_path=env_path)
 
 def get_connection():
     conn = psycopg2.connect(

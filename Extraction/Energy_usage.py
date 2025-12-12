@@ -101,4 +101,3 @@ df_hourly = df["power_kW"].resample("1H").mean().reset_index()
 # ---------------------------------------------------------
 print(df_hourly)
 
-//max

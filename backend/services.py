@@ -134,30 +134,42 @@ def get_daily_average_spindle_load(db_conn, date):
     except Exception as e:
         raise e
 
-    
 def get_hourly_combined_stats(db_conn, date_str):
-    """Return hourly averages of temperature and spindle load.
+    """Return hourly averages of temperature, spindle load, AND power usage.
 
     Args:
         db_conn: PostgreSQL connection.
         date_str: ISO date string YYYY-MM-DD.
 
     Returns:
-        List of dicts with hour, avg_temp, and avg_spindle.
+        List of dicts with log_hour, avg_temp, avg_spindle, and power_kW.
     """
     try:
         target_date = datetime.strptime(date_str, "%Y-%m-%d")
         start_ts = int(target_date.timestamp() * 1000)
         end_ts = int((target_date + timedelta(days=1)).timestamp() * 1000)
 
+        # Constant for the machine's max power
+        MAX_POWER = 37.0 
+
         with db_conn.cursor() as cursor:
-            # We select from the same table, but filter for BOTH IDs (618 and 630)
-            # We use MAX(CASE...) to separate them into columns in one row
             query = """
                 SELECT 
                     date_trunc('hour', to_timestamp(date / 1000.0)) AS log_hour,
+                    
+                    -- Temperature (ID 618)
                     ROUND(AVG(CASE WHEN id_var = 618 THEN value END)::numeric, 1) as avg_temp,
-                    ROUND(AVG(CASE WHEN id_var = 630 THEN value END)::numeric, 1) as avg_spindle
+                    
+                    -- Spindle Load (ID 630)
+                    ROUND(AVG(CASE WHEN id_var = 630 THEN value END)::numeric, 1) as avg_spindle,
+
+                    -- Power Calculation (Based on Spindle ID 630)
+                    -- Formula: (Avg_Spindle / 100) * 37.0
+                    ROUND(
+                        (AVG(CASE WHEN id_var = 630 THEN value END) / 100.0 * %s)::numeric, 
+                        2
+                    ) as "power_kW"
+
                 FROM "public"."variable_log_float"
                 WHERE id_var IN (618, 630)
                   AND date >= %s
@@ -165,8 +177,97 @@ def get_hourly_combined_stats(db_conn, date_str):
                 GROUP BY 1
                 ORDER BY 1 ASC;
             """
-            cursor.execute(query, (start_ts, end_ts))
+            # Pass MAX_POWER as the first parameter, then start_ts, then end_ts
+            cursor.execute(query, (MAX_POWER, start_ts, end_ts))
             return cursor.fetchall()
 
     except Exception as e:
+        raise e
+
+import pandas as pd
+from sqlalchemy import create_engine, text
+
+def get_energy_usage(db_conn, date_str):
+    try:
+        target_date = datetime.strptime(date_str, "%Y-%m-%d")
+        start_ts = int(target_date.timestamp() * 1000)
+        end_ts = int((target_date + timedelta(days=1)).timestamp() * 1000)
+
+        MAX_POWER_KW = 37.0
+
+        with db_conn.cursor() as cursor:
+            query = """
+                SELECT 
+                    date_trunc('hour', to_timestamp(date/1000)) AS hour_bin,
+                    AVG(value) AS avg_value
+                FROM public.variable_log_float
+                WHERE id_var = 630
+                AND date >= %s
+                AND date < %s
+                GROUP BY hour_bin
+                ORDER BY hour_bin;
+            """
+            cursor.execute(query, (start_ts, end_ts))
+            rows = cursor.fetchall()
+
+        energy_data = []
+        for row in rows:
+            # HÄR ÄR ÄNDRINGEN: Vi hämtar värdena med nyckel istället för att packa upp
+            # Använd row['hour_bin'] och row['avg_value']
+            
+            # OBS: Kontrollera om avg_value är None (om ingen data fanns den timmen)
+            if row['avg_value'] is None:
+                continue
+
+            power_kw = MAX_POWER_KW * (float(row['avg_value']) / 100.0)
+            
+            energy_data.append({
+                "real_date": row['hour_bin'].isoformat(),
+                "power_kW": round(power_kw, 2)
+            })
+
+        return energy_data
+
+    except Exception as e:
+        # Bra för debugging att se vad som faktiskt gick fel i terminalen
+        print(f"Error in get_energy_usage: {e}") 
+        raise e
+
+def get_daily_average_power(db_conn, date_str):
+    """Beräknar genomsnittlig effekt (kW) för hela dygnet."""
+    try:
+        # Konvertera datum
+        target_date = datetime.strptime(date_str, "%Y-%m-%d")
+        start_ts = int(target_date.timestamp() * 1000)
+        end_ts = int((target_date + timedelta(days=1)).timestamp() * 1000)
+
+        MAX_POWER_KW = 37.0
+
+        with db_conn.cursor() as cursor:
+            # Här behöver vi ingen GROUP BY, vi vill bara ha ett snitt för allt
+            query = """
+                SELECT AVG(value) AS daily_avg
+                FROM public.variable_log_float
+                WHERE id_var = 630
+                AND date >= %s
+                AND date < %s;
+            """
+            cursor.execute(query, (start_ts, end_ts))
+            result = cursor.fetchone()
+
+        # Om det inte finns data för dagen
+        if not result or result['daily_avg'] is None:
+            return {"date": date_str, "avg_power_kW": 0.0}
+
+        # Räkna om % till kW
+        avg_percent = float(result['daily_avg'])
+        avg_power_kw = MAX_POWER_KW * (avg_percent / 100.0)
+
+        return {
+            "date": date_str, 
+            "avg_power_kW": round(avg_power_kw, 2)
+        }
+
+    except Exception as e:
+        print(f"Error in get_daily_average_power: {e}")
         raise e
