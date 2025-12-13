@@ -8,6 +8,7 @@ The system consists of:
 - A React frontend that visualizes the data in a dashboard
 
 Both components must be running locally for the dashboard to function.
+
 ---
 
 ## 1. System Overview
@@ -83,15 +84,16 @@ To run the system locally, you need:
 Activate the virtual environment
 From the project root:
     
-``` 
+```bash
 cd backend
 source .venv/bin/activate
 cd ..
 uvicorn backend.main:app --reload
- ```
+```
 
 If successful, you should see output similar to:
-```
+
+```bash
 Uvicorn running on http://127.0.0.1:8000
 ```
 
@@ -101,18 +103,18 @@ The backend API will now be available at:
 ## 6. Running the frontend (React)
 
 Navigate to the frontend directory:
-``` 
+```bash 
 cd frontend
 cd TBDA 
 ```
 
 Install dependencies (first time only):
-``` 
+```bash 
 npm install 
 ```
 
 Start the development server:
-``` 
+```bash 
 npm run dev 
 ```
 
