@@ -184,9 +184,6 @@ def get_hourly_combined_stats(db_conn, date_str):
     except Exception as e:
         raise e
 
-import pandas as pd
-from sqlalchemy import create_engine, text
-
 def get_energy_usage(db_conn, date_str):
     try:
         target_date = datetime.strptime(date_str, "%Y-%m-%d")
@@ -212,10 +209,7 @@ def get_energy_usage(db_conn, date_str):
 
         energy_data = []
         for row in rows:
-            # HÄR ÄR ÄNDRINGEN: Vi hämtar värdena med nyckel istället för att packa upp
-            # Använd row['hour_bin'] och row['avg_value']
             
-            # OBS: Kontrollera om avg_value är None (om ingen data fanns den timmen)
             if row['avg_value'] is None:
                 continue
 
@@ -229,14 +223,12 @@ def get_energy_usage(db_conn, date_str):
         return energy_data
 
     except Exception as e:
-        # Bra för debugging att se vad som faktiskt gick fel i terminalen
         print(f"Error in get_energy_usage: {e}") 
         raise e
 
 def get_daily_average_power(db_conn, date_str):
     """Beräknar genomsnittlig effekt (kW) för hela dygnet."""
     try:
-        # Konvertera datum
         target_date = datetime.strptime(date_str, "%Y-%m-%d")
         start_ts = int(target_date.timestamp() * 1000)
         end_ts = int((target_date + timedelta(days=1)).timestamp() * 1000)
@@ -244,7 +236,6 @@ def get_daily_average_power(db_conn, date_str):
         MAX_POWER_KW = 37.0
 
         with db_conn.cursor() as cursor:
-            # Här behöver vi ingen GROUP BY, vi vill bara ha ett snitt för allt
             query = """
                 SELECT AVG(value) AS daily_avg
                 FROM public.variable_log_float
@@ -255,11 +246,9 @@ def get_daily_average_power(db_conn, date_str):
             cursor.execute(query, (start_ts, end_ts))
             result = cursor.fetchone()
 
-        # Om det inte finns data för dagen
         if not result or result['daily_avg'] is None:
             return {"date": date_str, "avg_power_kW": 0.0}
 
-        # Räkna om % till kW
         avg_percent = float(result['daily_avg'])
         avg_power_kw = MAX_POWER_KW * (avg_percent / 100.0)
 
