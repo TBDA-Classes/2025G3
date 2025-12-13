@@ -22,8 +22,8 @@ The dashboard allows users to:
 - Inspect hourly trends for temperature, spindle load, and power
 - View critical alert for the selected day
 
-    Only dates with available historical data (typically before 2022) will return results.
-    - **An example of a week with data is one starting on 2021-11-22**
+- Only dates with available historical data (typically before 2022) will return results.
+- **An example of a week with data is one starting on 2021-11-22**
 
 ---
 
@@ -62,11 +62,12 @@ The right-hand panel lists critical alerts:
 
 From the project root:
 
-```2025G3/
+````
+2025G3/
   backend/            # FastAPI backend
   frontend/TBDA/      # React frontend
-  docs/               # Project documentation
-  ```
+  docs/               # Project documentation 
+  ````
 
 ## 4. Prerequisites
 
@@ -77,16 +78,17 @@ To run the system locally, you need:
 - Access to the course PostgreSQL database
 - A .env file with database credentials
 
-## 5. 5. Running the Backend (FastAPI)
+## 5. Running the Backend (FastAPI)
 
 Activate the virtual environment
 From the project root:
     
-```cd backend
+``` 
+cd backend
 source .venv/bin/activate
 cd ..
 uvicorn backend.main:app --reload
-```
+ ```
 
 If successful, you should see output similar to:
 ```Uvicorn running on http://127.0.0.1:8000```
@@ -94,6 +96,40 @@ If successful, you should see output similar to:
 The backend API will now be available at:
 [http://localhost:8000](http://localhost:8000)
 
+## 6. Running the frontend (React)
 
+Navigate to the frontend directory:
+``` 
+cd frontend
+cd TBDA 
+```
 
+Install dependencies (first time only):
+``` 
+npm install 
+```
 
+Start the development server:
+``` 
+npm run dev 
+```
+
+The frontend will be available at:
+[http://localhost:5173](http://localhost:5173)
+
+## 7. Running the Full System
+
+To use the dashboard:
+- Start the backend
+- Start the frontend
+- Open [http://localhost:5173](http://localhost:5173) in a browser
+- Select a valid historical date and click Apply
+
+Both servers must be running simultaneously.
+
+## 8. Known Limitations
+
+- Only historical data is supported
+- Some dates return no data
+- Energy metrics are estimates
+- The system is a prototype, not a production deployments
