@@ -91,7 +91,9 @@ uvicorn backend.main:app --reload
  ```
 
 If successful, you should see output similar to:
-```Uvicorn running on http://127.0.0.1:8000```
+```
+Uvicorn running on http://127.0.0.1:8000
+```
 
 The backend API will now be available at:
 [http://localhost:8000](http://localhost:8000)
