@@ -40,8 +40,7 @@ nav:
       - UI overview: frontend/ui.md
       - Visualizations: frontend/ui_visualization.md
 
-  - Client:
-      - User manual: client/user_manual.md
+  - User guide: client/user_guide.md
 
   - Sprint summaries:
       - Sprint 1: sprint-summaries/sprint1.md
