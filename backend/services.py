@@ -184,7 +184,6 @@ def get_hourly_combined_stats(db_conn, date_str):
     except Exception as e:
         raise e
 
-import pandas as pd
 from sqlalchemy import create_engine, text
 
 def get_energy_usage(db_conn, date_str):
