@@ -680,9 +680,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-5-running-the-backend-fastapi" class="md-nav__link">
+  <a href="#5-running-the-backend-fastapi" class="md-nav__link">
     <span class="md-ellipsis">
-      5. 5. Running the Backend (FastAPI)
+      5. Running the Backend (FastAPI)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-running-the-full-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Running the Full System
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-known-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Known Limitations
     </span>
   </a>
   
@@ -924,9 +942,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-5-running-the-backend-fastapi" class="md-nav__link">
+  <a href="#5-running-the-backend-fastapi" class="md-nav__link">
     <span class="md-ellipsis">
-      5. 5. Running the Backend (FastAPI)
+      5. Running the Backend (FastAPI)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-running-the-full-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Running the Full System
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-known-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Known Limitations
     </span>
   </a>
   
@@ -965,9 +1001,10 @@ It is intended for technical users and evaluators of the project.</p>
   - Number of alerts
 - Inspect hourly trends for temperature, spindle load, and power
 - View critical alert for the selected day</p>
-<pre><code>Only dates with available historical data (typically before 2022) will return results.
-- **An example of a week with data is one starting on 2021-11-22**
-</code></pre>
+<ul>
+<li>Only dates with available historical data (typically before 2022) will return results.</li>
+<li><strong>An example of a week with data is one starting on 2021-11-22</strong></li>
+</ul>
 <hr />
 <h2 id="2-dashboard-usage">2. Dashboard Usage</h2>
 <h3 id="selecting-a-date">Selecting a Date</h3>
@@ -1008,17 +1045,52 @@ It is intended for technical users and evaluators of the project.</p>
 <li>Access to the course PostgreSQL database</li>
 <li>A .env file with database credentials</li>
 </ul>
-<h2 id="5-5-running-the-backend-fastapi">5. 5. Running the Backend (FastAPI)</h2>
+<h2 id="5-running-the-backend-fastapi">5. Running the Backend (FastAPI)</h2>
 <p>Activate the virtual environment
 From the project root:</p>
-<p><code>cd backend
+<pre><code>cd backend
 source .venv/bin/activate
 cd ..
-uvicorn backend.main:app --reload</code></p>
-<p>If successful, you should see output similar to:
-<code>Uvicorn running on http://127.0.0.1:8000</code></p>
-<p>The backend API will now be available at:
-<a href="http://localhost:8000">http://localhost:8000</a></p>
+uvicorn backend.main:app --reload
+ ```
+
+If successful, you should see output similar to:
+```Uvicorn running on http://127.0.0.1:8000```
+
+The backend API will now be available at:
+[http://localhost:8000](http://localhost:8000)
+
+## 6. Running the frontend (React)
+
+Navigate to the frontend directory:
+</code></pre>
+<p>cd frontend
+cd TBDA </p>
+<pre><code>
+Install dependencies (first time only):
+</code></pre>
+<p>npm install </p>
+<pre><code>
+Start the development server:
+</code></pre>
+<p>npm run dev 
+```</p>
+<p>The frontend will be available at:
+<a href="http://localhost:5173">http://localhost:5173</a></p>
+<h2 id="7-running-the-full-system">7. Running the Full System</h2>
+<p>To use the dashboard:
+- Start the backend
+- Start the frontend
+- Open <a href="http://localhost:5173">http://localhost:5173</a> in a browser
+- Select a valid historical date and click Apply</p>
+<p>Both servers must be running simultaneously.</p>
+<h2 id="8-known-limitations">8. Known Limitations</h2>
+<ul>
+<li>Only historical data is supported</li>
+<li>Some dates return no data</li>
+<li>Energy metrics are estimates</li>
+<li>The system is a prototype, not a production deployments</li>
+</ul>
 
 
 
