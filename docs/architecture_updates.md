@@ -1,203 +1,179 @@
-# 🧱 Architectural Evolution – CNC Data Analytics System
+# TBDA Project Architectures — Current Status and Roadmap Alignment (presented on 15/12/2025)
 
-### ⚠️ Preliminary Note
-The following architectural proposals (**Architectures A, B, and C**) have been initially designed with the support of *ChatGPT (OpenAI)* as a reference framework for the project **“Understanding from Numerical Control Driven Machining Control.”**
+## 1. The original roadmap (A, B, C)
 
-They represent **conceptual drafts and working hypotheses**, not final decisions.  
-All elements — including component choices, data flows, and execution layers — must be **reviewed, discussed, and validated by the entire project team** before implementation.  
-Any modification, simplification, or extension should be agreed upon collectively to ensure technical consistency and feasibility.
+We defined three evolutionary stages:
 
----
+### Architecture A — Local Batch
+- Remote PostgreSQL (raw data).
+- All analysis performed locally in Python (pandas, SQL).
+- Local dashboard in Streamlit.
+- Typical use: prototyping, data understanding, batch analytics.
 
-## ⚙️ Architecture A — “Local Batch Pipeline”
+### Architecture B — Time-Series Optimized
+- PostgreSQL + TimescaleDB (hypertables + continuous aggregates).
+- Python ETL/analytics still local.
+- Dashboard (Streamlit) reading pre-aggregated data from the DB.
+- Objective: performance & scalability on large volumes.
 
-### 🔹 Concept
-A simple, local-first architecture for initial experimentation.  
-All processing is performed on the user’s PC, while data are stored on a remote PostgreSQL database.  
-It enables the team to explore the dataset, understand machine behavior, and prototype the analytics pipeline.  
+### Architecture C — Streaming / Real-Time
+- Kafka for ingestion, Spark Structured Streaming for real-time processing.
+- PostgreSQL (operational) + TimescaleDB (historical).
+- Dashboard showing machine state and KPIs in near real-time.
+- Objective: real-time analytics and immediate alerts.
 
-This is the **starting point** for the project — low complexity, minimal infrastructure, and ideal for the early development phase.
-
----
-
-### 🧩 Main Components
-
-| Layer | Component | Execution / Hosting | Description |
-|-------|------------|--------------------|--------------|
-| **Production plant** | CNC Machine | Physical system | Produces raw operational variables (axis position, spindle load, etc.) |
-| **Cloud / Server** | PostgreSQL Database (raw data) | Hosted on UPM / remote server | Stores high-frequency machine signals |
-| **Local PC** | Python ETL (pandas, SQL) | Executed locally in Jupyter / Spyder | Extracts and cleans data, performs simple aggregations |
-| | Python Analytics | Executed locally in Jupyter / Spyder | Computes KPIs, operation time, energy per program, and alerts |
-| | Streamlit Dashboard (UI) | Executed locally with Streamlit (Python web server) | Visualizes results and provides basic user interaction |
-| **User** | Operator / Analyst | Local access | Explores data, applies filters, interprets results |
+![Timeline](timeline.jpg)
 
 ---
 
-### 🔄 Workflow
-1. The CNC machine sends raw variables to the PostgreSQL database.  
-2. Local ETL scripts retrieve and clean the data.  
-3. Analytics modules compute machine indicators and alerts.  
-4. The dashboard presents results interactively.
+## 2. CURRENT Architecture
+
+![Current Architecture](Current_Architecture.jpg)
+
+### 2.1 Data source / Cloud
+- **CNC machine (physical plant)**  
+  Produces high-frequency signals (axes, spindle, temperatures, alarms).
+
+- **Remote PostgreSQL**
+  - Main tables:
+    - `public.variable_log_float` (temperature, spindle load, machine state, etc.)
+    - `public.variable_log_string` (alarms stored as arrays like `[code, msg, plc, line]`)
+  - No TimescaleDB installed (no hypertables / continuous aggregates).
+
+### 2.2 Local “data & analytics” (PC)
+
+We currently have two sub-worlds:
+
+#### a) Extraction / data analysis toolbox (offline) *(not shown in the diagram)*
+Standalone scripts using `config.yaml` + SQLAlchemy/psycopg2 to read from the DB and:
+
+- **Explore alarms**
+  - `Alarm data _ extraction.py`: parse `variable_log_string`, explode arrays, build timeline & summary table.
+
+- **Analyze motor utilization / machine state / activity**
+  - `Engine utilisation data _ extraction.py` → scatter plots per axis.
+  - `Extraction_operation_in_progress.py` → ON/IDLE/OFF timeline (Gantt-style).
+  - `System_status.py` → hour × day activity pivot table.
+
+- **Analyze temperatures**
+  - `Temperature data _ extraction.py` → temperature trend per axis.
+  - `Temperature data mean and max.py` → 30-minute resample, mean & max.
+
+- **Generic CSV export**
+  - `Analysis_1.py` → extract multiple IDs and save to CSV.
+
+All of these run locally, on-demand, batch, triggered manually.
+
+#### b) Web backend (FastAPI)
+- `backend/database.py` → psycopg2 connection using environment variables.
+- `backend/services.py` → production SQL logic:
+  - daily average temperature (`id_var=618`) and spindle load (`id_var=630`)
+  - daily alarm count (`num_alarms`)
+  - list of critical alarms (3 specific descriptions), exploding JSON with `jsonb_array_elements`
+  - hourly combined averages (temp + spindle) via `GROUP BY date_trunc('hour', ...)`
+- `backend/main.py` → FastAPI app exposing:
+  - `/api/daily_temp_avg`
+  - `/api/daily_spindle_avg`
+  - `/api/number_daily_alerts`
+  - `/api/critical_alerts`
+  - `/api/hourly_combined`
+  which call `services.py` and return JSON for the frontend.
+
+### 2.3 Web Frontend (React)
+A React/TypeScript SPA (Vite) running in the local browser.
+
+- `App.tsx`:
+  - manages `selectedDate`
+  - calls backend via axios:
+    - `/api/daily_temp_avg`
+    - `/api/daily_spindle_avg`
+    - `/api/number_daily_alerts`
+    - `/api/critical_alerts`
+    - `/api/hourly_combined`
+  - displays:
+    - 3 KPI boxes (`InformationBox.tsx`): avg temp, avg spindle, number of alarms
+    - combined hourly chart (`HourlyChart.tsx`) with Recharts (dual Y-axis)
+    - critical alarms panel (`AlertPanel.tsx` + `AlertCard.tsx`)
+- `SidePanel.tsx`: stub navigation menu (buttons without functionality)
+- `style.css`: dark theme, dashboard layout
+
+**Everything is still batch:** the user selects a date → frontend makes HTTP calls → backend executes SQL queries on historical data on demand.
 
 ---
 
-### ✅ Advantages
-- Very simple to deploy and maintain  
-- Ideal for small datasets or offline analysis  
-- Full transparency and control for debugging and learning  
+## 3. Which architecture are we closest to?
 
-### ⚠️ Limitations
-- Query time increases with dataset size  
-- Manual updates required (no automation)  
-- No real-time feedback; purely batch operation  
+We are closest to **ARCHITECTURE A (Local Batch)**, with an evolution:
 
----
+**Architecture A + (REST API + separate frontend)**
 
-### 🕒 Adoption timeline
-Used in **Phase 1** (project start).  
-Goal: validate the data model, ensure database connectivity, and develop the first analysis scripts.
+**Why:**
+- Raw remote PostgreSQL data, no TimescaleDB → exactly like A, not like B.
+- Batch analysis via Python scripts → matches A.
+- No streaming, no Kafka, no Spark → far from C.
+- Dashboard is not Streamlit but React + FastAPI; conceptually, it is still a local UI that queries the DB (indirectly) and displays KPIs and charts.
 
 ---
 
-### 📷 Architecture Diagram
-![Architecture A](assets/TBDA_Architectures-A.jpg)
+## 4. Detailed comparison with Architecture A
+
+### 4.1 Implemented from Architecture A
+✅ Remote PostgreSQL as the central data store  
+✅ Local Python ETL (extraction scripts with pandas + SQLAlchemy)  
+✅ Local Python analytics (KPIs, timelines, pivots, resampling)  
+✅ Interactive dashboard (React + FastAPI instead of Streamlit, but same function)  
+✅ Batch mode, not real-time  
+
+Additionally:  
+✅ Added a FastAPI backend layer, reusable and clean, separating SQL from UI logic.
+
+### 4.2 What is missing (or different) from Architecture A
+❌ Streamlit dashboard (replaced by a separate React frontend + FastAPI backend).  
+⚠️ Batch automation remains manual on the extraction side (scripts run by hand), consistent with A.
+
+**Conclusion:** for the purposes of the roadmap, Architecture A can be considered complete.
 
 ---
 
-## ⚡ Architecture B — “Optimized Time-Series Pipeline”
+## 5. Comparison with Architecture B (Time-Series Optimized)
 
-### 🔹 Concept
-An upgraded version focusing on **performance and scalability**.  
-PostgreSQL is extended with **TimescaleDB**, enabling hypertables and continuous aggregation for fast time-based queries.  
-This allows the system to handle larger volumes of CNC data with near-real-time responsiveness.
+### 5.1 What we already have (partially)
+✅ Temporal queries with aggregations already implemented:
+- daily averages (`AVG` with timestamp range condition)
+- hourly averages (`get_hourly_combined_stats` using `date_trunc('hour')`)
+- daily alarm counts
 
----
+✅ A clean separation between backend and frontend, ready to benefit from a faster DB
 
-### 🧩 Main Components
+Thus, we are conceptually aligned with B in terms of query patterns, but not in infrastructure.
 
-| Layer | Component | Execution / Hosting | Description |
-|-------|------------|--------------------|--------------|
-| **Production plant** | CNC Machine | Physical source | Streams operational data continuously |
-| **Cloud / Server** | PostgreSQL (raw data) | Hosted on remote server | Stores unprocessed variables |
-| | TimescaleDB | Hosted on cloud server – automatic aggregation | Extends PostgreSQL to manage time-series efficiently |
-| **Local PC** | Python ETL | Executed locally in Jupyter / Spyder | Loads data, applies additional transformations and cleaning |
-| | Python Analytics | Executed locally in Jupyter / Spyder | Performs KPI calculation, energy/time estimation, and alert generation |
-| | Streamlit Dashboard (UI) | Executed locally with Streamlit | Visualizes aggregated data with time filters and metrics |
-| **User** | Operator / Analyst | Local or LAN access | Uses the dashboard for insights and comparisons |
+### 5.2 What is missing to truly reach “Architecture B”
+1) **TimescaleDB on top of PostgreSQL**
+- install TimescaleDB extension
+- convert tables (`variable_log_float`, optionally `variable_log_string`) into hypertables
 
----
+2) **Continuous aggregates / time-series materialized views**
+- create continuous aggregate views, e.g.:
+  - hourly averages for key variables
+  - daily aggregates
+  - alarm counters
+- backend should query these instead of recalculating on the raw table
 
-### 🔄 Workflow
-1. The CNC data are inserted into PostgreSQL (raw).  
-2. TimescaleDB automatically builds hypertables and continuous aggregates.  
-3. Local ETL scripts access pre-aggregated data instead of raw tables.  
-4. Analytics compute KPIs and alerts efficiently.  
-5. The dashboard displays up-to-date results.
+3) **Backend adjustments**
+- refactor `services.py` to query the new aggregate views
+- optionally support multi-day ranges more efficiently
 
----
+4) **Some orchestration**
+- scheduled jobs to populate derived tables (if some transformations remain outside Timescale)
 
-### ✅ Advantages
-- Fast queries thanks to TimescaleDB hypertables  
-- Continuous aggregation handled automatically on the server  
-- Scalable to millions of records  
-- Compatible with the same local Python workflow  
+### 5.3 Therefore: what must be done practically to go from A → B
+We have currently developed a system whose architecture mirrors A:
+- raw data in PostgreSQL,
+- batch analysis in Python (scripts + FastAPI backend),
+- a local dashboard consuming KPIs calculated on-demand.
 
-### ⚠️ Limitations
-- Requires server configuration for TimescaleDB  
-- Still partially manual (batch updates)  
-- No true real-time streaming yet  
-
----
-
-### 🕒 Adoption timeline
-Used in **Phase 2** (mid-project).  
-Goal: optimize performance and manage higher data volumes once the prototype is validated.
-
----
-
-### 📷 Architecture Diagram
-![Architecture B](assets/TBDA_Architectures-B.jpg)
-
----
-
-## 🌐 Architecture C — “Streaming / Real-Time Pipeline”
-
-### 🔹 Concept
-The most advanced version, enabling **real-time monitoring and analytics**.  
-This architecture integrates **Apache Kafka** for data streaming and **Spark Structured Streaming** for on-the-fly processing.  
-It combines real-time pipelines with long-term storage and visualization.
-
----
-
-### 🧩 Main Components
-
-| Layer | Component | Execution / Hosting | Description |
-|-------|------------|--------------------|--------------|
-| **Production plant** | CNC Machine | Physical source | Continuously generates real-time signals |
-| **Cloud / Processing layer** | Apache Kafka (stream) | Hosted on cloud server – streaming message broker | Receives live data, buffers, and distributes messages |
-| | Spark Structured Streaming | Executed on cloud server – real-time processing engine | Processes Kafka streams, detects patterns and alerts, forwards results |
-| | PostgreSQL (operational storage) | Hosted on remote server | Stores latest operational data for fast queries |
-| | TimescaleDB (historical storage) | Hosted on remote server | Maintains long-term time-series logs and aggregates |
-| **Local PC** | Python ETL | Executed locally in Jupyter / Spyder | Periodically integrates cloud data for additional analysis |
-| | Python Analytics | Executed locally in Jupyter / Spyder | Further exploration and validation of real-time results |
-| | Streamlit Dashboard (UI) | Executed locally with Streamlit | Displays live machine state, alerts, and KPIs in near real-time |
-| **User** | Operator / Analyst | Web access | Monitors operations and system health interactively |
-
----
-
-### 🔄 Workflow
-1. CNC sensors send live data streams to Apache Kafka.  
-2. Kafka buffers and forwards events to Spark Structured Streaming.  
-3. Spark aggregates and processes data in micro-batches, detecting operation cycles and anomalies.  
-4. Results are written to PostgreSQL (for fast querying) and TimescaleDB (for historical logs).  
-5. The Streamlit dashboard continuously updates with live KPIs and alerts.
-
----
-
-### ✅ Advantages
-- Real-time data ingestion and processing  
-- Immediate alerting and visualization  
-- Hybrid storage (short-term + long-term)  
-- Scalable to industrial workloads  
-
-### ⚠️ Limitations
-- Higher infrastructure complexity  
-- Requires Kafka and Spark deployment  
-- Needs reliable network and cloud configuration  
-
----
-
-### 🕒 Adoption timeline
-Used in **Phase 3** (final stage).  
-Goal: demonstrate real-time analytics capability, provide continuous monitoring, and connect the full data lifecycle (machine → cloud → user).
-
----
-
-### 📷 Architecture Diagram
-![Architecture C](assets/TBDA_Architectures-C.jpg)
-
----
-
-## 🧭 Overall Evolution Summary
-
-| Stage | Main Goal | Key Technologies | Deployment Level |
-|--------|------------|------------------|------------------|
-| **A – Local Batch** | Prototype, data understanding | PostgreSQL, Python (pandas), Streamlit | Local execution |
-| **B – Time-Series Optimized** | Performance & scalability | TimescaleDB, Python (ETL/Analytics) | Local + Cloud |
-| **C – Streaming / Real-Time** | Real-time insights & automation | Kafka, Spark, PostgreSQL, TimescaleDB | Cloud + Local UI |
-
----
-
-## 🔄 Progressive Implementation Strategy
-
-1. **Phase 1:** Start with *Architecture A* → focus on ETL pipeline, KPIs, and dashboard.  
-2. **Phase 2:** Migrate to *Architecture B* → activate TimescaleDB and optimize queries.  
-3. **Phase 3:** Extend to *Architecture C* → integrate streaming for real-time feedback and alerts.
-
----
-
-This progressive approach ensures that:
-- The team learns the full data lifecycle step by step.  
-- Each phase delivers a working, demonstrable system.  
-- The final architecture (C) aligns with modern **Industry 4.0** and **IoT** paradigms — turning raw CNC signals into real-time, actionable intelligence.
-
+To move toward an architecture like B, we now need to:
+1. Enable TimescaleDB and convert `variable_log_*` tables into hypertables.
+2. Define continuous aggregates (hourly/daily views) for temperature, spindle load, machine state and alarms.
+3. Refactor `services.py` to read from these pre-aggregated views instead of the raw table.
+4. Consider deploying the backend closer to the DB (cloud/server) to reduce latency while keeping the frontend local/web.
