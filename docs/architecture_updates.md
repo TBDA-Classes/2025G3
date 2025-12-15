@@ -22,13 +22,13 @@ We defined three evolutionary stages:
 - Dashboard showing machine state and KPIs in near real-time.
 - Objective: real-time analytics and immediate alerts.
 
-![Timeline](timeline.jpg)
+![Timeline](assets/timeline.jpg)
 
 ---
 
 ## 2. CURRENT Architecture
 
-![Current Architecture](Current_Architecture.jpg)
+![Current Architecture](assets/Current_Architecture.jpg)
 
 ### 2.1 Data source / Cloud
 - **CNC machine (physical plant)**  
