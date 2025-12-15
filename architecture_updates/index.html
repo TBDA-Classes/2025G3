@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../overview/">
+        <link rel="prev" href="../architecture/">
       
       
-        <link rel="next" href="../architecture_updates/">
+        <link rel="next" href="../backend/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Architecture roadmap - Tools for Big Data Analytics - Group 3</title>
+        <title>Current architecture (15/12/2025) - Tools for Big Data Analytics - Group 3</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#architectural-evolution-cnc-data-analytics-system" class="md-skip">
+        <a href="#tbda-project-architectures-current-status-and-roadmap-alignment-presented-on-15122025" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Architecture roadmap
+              Current architecture (15/12/2025)
             
           </span>
         </div>
@@ -285,6 +285,29 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture roadmap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -302,7 +325,7 @@
   
   
   <span class="md-ellipsis">
-    Architecture roadmap
+    Current architecture (15/12/2025)
     
   </span>
   
@@ -315,7 +338,7 @@
   
   
   <span class="md-ellipsis">
-    Architecture roadmap
+    Current architecture (15/12/2025)
     
   </span>
   
@@ -338,82 +361,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#preliminary-note" class="md-nav__link">
+  <a href="#1-the-original-roadmap-a-b-c" class="md-nav__link">
     <span class="md-ellipsis">
-      ⚠️ Preliminary Note
+      1. The original roadmap (A, B, C)
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#architecture-a-local-batch-pipeline" class="md-nav__link">
-    <span class="md-ellipsis">
-      ⚙️ Architecture A — “Local Batch Pipeline”
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="⚙️ Architecture A — “Local Batch Pipeline”">
+    <nav class="md-nav" aria-label="1. The original roadmap (A, B, C)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#concept" class="md-nav__link">
+  <a href="#architecture-a-local-batch" class="md-nav__link">
     <span class="md-ellipsis">
-      🔹 Concept
+      Architecture A — Local Batch
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#main-components" class="md-nav__link">
+  <a href="#architecture-b-time-series-optimized" class="md-nav__link">
     <span class="md-ellipsis">
-      🧩 Main Components
+      Architecture B — Time-Series Optimized
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#workflow" class="md-nav__link">
+  <a href="#architecture-c-streaming-real-time" class="md-nav__link">
     <span class="md-ellipsis">
-      🔄 Workflow
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#advantages" class="md-nav__link">
-    <span class="md-ellipsis">
-      ✅ Advantages
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#limitations" class="md-nav__link">
-    <span class="md-ellipsis">
-      ⚠️ Limitations
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#adoption-timeline" class="md-nav__link">
-    <span class="md-ellipsis">
-      🕒 Adoption timeline
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#architecture-diagram" class="md-nav__link">
-    <span class="md-ellipsis">
-      📷 Architecture Diagram
+      Architecture C — Streaming / Real-Time
     </span>
   </a>
   
@@ -425,73 +403,61 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#architecture-b-optimized-time-series-pipeline" class="md-nav__link">
+  <a href="#2-current-architecture" class="md-nav__link">
     <span class="md-ellipsis">
-      ⚡ Architecture B — “Optimized Time-Series Pipeline”
+      2. CURRENT Architecture
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="⚡ Architecture B — “Optimized Time-Series Pipeline”">
+    <nav class="md-nav" aria-label="2. CURRENT Architecture">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#concept_1" class="md-nav__link">
+  <a href="#21-data-source-cloud" class="md-nav__link">
     <span class="md-ellipsis">
-      🔹 Concept
+      2.1 Data source / Cloud
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#main-components_1" class="md-nav__link">
+  <a href="#22-local-data-analytics-pc" class="md-nav__link">
     <span class="md-ellipsis">
-      🧩 Main Components
+      2.2 Local “data &amp; analytics” (PC)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Local “data &amp; analytics” (PC)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-extraction-data-analysis-toolbox-offline-not-shown-in-the-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      a) Extraction / data analysis toolbox (offline) (not shown in the diagram)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#workflow_1" class="md-nav__link">
+  <a href="#b-web-backend-fastapi" class="md-nav__link">
     <span class="md-ellipsis">
-      🔄 Workflow
+      b) Web backend (FastAPI)
     </span>
   </a>
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#advantages_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      ✅ Advantages
-    </span>
-  </a>
+      </ul>
+    </nav>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#limitations_1" class="md-nav__link">
+  <a href="#23-web-frontend-react" class="md-nav__link">
     <span class="md-ellipsis">
-      ⚠️ Limitations
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#adoption-timeline_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      🕒 Adoption timeline
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#architecture-diagram_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      📷 Architecture Diagram
+      2.3 Web Frontend (React)
     </span>
   </a>
   
@@ -503,73 +469,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#architecture-c-streaming-real-time-pipeline" class="md-nav__link">
+  <a href="#3-which-architecture-are-we-closest-to" class="md-nav__link">
     <span class="md-ellipsis">
-      🌐 Architecture C — “Streaming / Real-Time Pipeline”
+      3. Which architecture are we closest to?
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🌐 Architecture C — “Streaming / Real-Time Pipeline”">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-detailed-comparison-with-architecture-a" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Detailed comparison with Architecture A
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Detailed comparison with Architecture A">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#concept_2" class="md-nav__link">
+  <a href="#41-implemented-from-architecture-a" class="md-nav__link">
     <span class="md-ellipsis">
-      🔹 Concept
+      4.1 Implemented from Architecture A
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#main-components_2" class="md-nav__link">
+  <a href="#42-what-is-missing-or-different-from-architecture-a" class="md-nav__link">
     <span class="md-ellipsis">
-      🧩 Main Components
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#workflow_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      🔄 Workflow
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#advantages_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      ✅ Advantages
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#limitations_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      ⚠️ Limitations
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#adoption-timeline_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      🕒 Adoption timeline
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#architecture-diagram_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      📷 Architecture Diagram
+      4.2 What is missing (or different) from Architecture A
     </span>
   </a>
   
@@ -581,20 +511,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#overall-evolution-summary" class="md-nav__link">
+  <a href="#5-comparison-with-architecture-b-time-series-optimized" class="md-nav__link">
     <span class="md-ellipsis">
-      🧭 Overall Evolution Summary
+      5. Comparison with Architecture B (Time-Series Optimized)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Comparison with Architecture B (Time-Series Optimized)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-what-we-already-have-partially" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 What we already have (partially)
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#progressive-implementation-strategy" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#52-what-is-missing-to-truly-reach-architecture-b" class="md-nav__link">
     <span class="md-ellipsis">
-      🔄 Progressive Implementation Strategy
+      5.2 What is missing to truly reach “Architecture B”
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-therefore-what-must-be-done-practically-to-go-from-a-b" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Therefore: what must be done practically to go from A → B
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -602,29 +556,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../architecture_updates/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Current architecture (15/12/2025)
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1073,82 +1004,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#preliminary-note" class="md-nav__link">
+  <a href="#1-the-original-roadmap-a-b-c" class="md-nav__link">
     <span class="md-ellipsis">
-      ⚠️ Preliminary Note
+      1. The original roadmap (A, B, C)
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#architecture-a-local-batch-pipeline" class="md-nav__link">
-    <span class="md-ellipsis">
-      ⚙️ Architecture A — “Local Batch Pipeline”
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="⚙️ Architecture A — “Local Batch Pipeline”">
+    <nav class="md-nav" aria-label="1. The original roadmap (A, B, C)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#concept" class="md-nav__link">
+  <a href="#architecture-a-local-batch" class="md-nav__link">
     <span class="md-ellipsis">
-      🔹 Concept
+      Architecture A — Local Batch
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#main-components" class="md-nav__link">
+  <a href="#architecture-b-time-series-optimized" class="md-nav__link">
     <span class="md-ellipsis">
-      🧩 Main Components
+      Architecture B — Time-Series Optimized
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#workflow" class="md-nav__link">
+  <a href="#architecture-c-streaming-real-time" class="md-nav__link">
     <span class="md-ellipsis">
-      🔄 Workflow
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#advantages" class="md-nav__link">
-    <span class="md-ellipsis">
-      ✅ Advantages
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#limitations" class="md-nav__link">
-    <span class="md-ellipsis">
-      ⚠️ Limitations
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#adoption-timeline" class="md-nav__link">
-    <span class="md-ellipsis">
-      🕒 Adoption timeline
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#architecture-diagram" class="md-nav__link">
-    <span class="md-ellipsis">
-      📷 Architecture Diagram
+      Architecture C — Streaming / Real-Time
     </span>
   </a>
   
@@ -1160,73 +1046,61 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#architecture-b-optimized-time-series-pipeline" class="md-nav__link">
+  <a href="#2-current-architecture" class="md-nav__link">
     <span class="md-ellipsis">
-      ⚡ Architecture B — “Optimized Time-Series Pipeline”
+      2. CURRENT Architecture
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="⚡ Architecture B — “Optimized Time-Series Pipeline”">
+    <nav class="md-nav" aria-label="2. CURRENT Architecture">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#concept_1" class="md-nav__link">
+  <a href="#21-data-source-cloud" class="md-nav__link">
     <span class="md-ellipsis">
-      🔹 Concept
+      2.1 Data source / Cloud
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#main-components_1" class="md-nav__link">
+  <a href="#22-local-data-analytics-pc" class="md-nav__link">
     <span class="md-ellipsis">
-      🧩 Main Components
+      2.2 Local “data &amp; analytics” (PC)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Local “data &amp; analytics” (PC)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-extraction-data-analysis-toolbox-offline-not-shown-in-the-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      a) Extraction / data analysis toolbox (offline) (not shown in the diagram)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#workflow_1" class="md-nav__link">
+  <a href="#b-web-backend-fastapi" class="md-nav__link">
     <span class="md-ellipsis">
-      🔄 Workflow
+      b) Web backend (FastAPI)
     </span>
   </a>
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#advantages_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      ✅ Advantages
-    </span>
-  </a>
+      </ul>
+    </nav>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#limitations_1" class="md-nav__link">
+  <a href="#23-web-frontend-react" class="md-nav__link">
     <span class="md-ellipsis">
-      ⚠️ Limitations
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#adoption-timeline_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      🕒 Adoption timeline
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#architecture-diagram_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      📷 Architecture Diagram
+      2.3 Web Frontend (React)
     </span>
   </a>
   
@@ -1238,73 +1112,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#architecture-c-streaming-real-time-pipeline" class="md-nav__link">
+  <a href="#3-which-architecture-are-we-closest-to" class="md-nav__link">
     <span class="md-ellipsis">
-      🌐 Architecture C — “Streaming / Real-Time Pipeline”
+      3. Which architecture are we closest to?
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🌐 Architecture C — “Streaming / Real-Time Pipeline”">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-detailed-comparison-with-architecture-a" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Detailed comparison with Architecture A
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Detailed comparison with Architecture A">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#concept_2" class="md-nav__link">
+  <a href="#41-implemented-from-architecture-a" class="md-nav__link">
     <span class="md-ellipsis">
-      🔹 Concept
+      4.1 Implemented from Architecture A
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#main-components_2" class="md-nav__link">
+  <a href="#42-what-is-missing-or-different-from-architecture-a" class="md-nav__link">
     <span class="md-ellipsis">
-      🧩 Main Components
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#workflow_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      🔄 Workflow
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#advantages_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      ✅ Advantages
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#limitations_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      ⚠️ Limitations
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#adoption-timeline_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      🕒 Adoption timeline
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#architecture-diagram_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      📷 Architecture Diagram
+      4.2 What is missing (or different) from Architecture A
     </span>
   </a>
   
@@ -1316,20 +1154,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#overall-evolution-summary" class="md-nav__link">
+  <a href="#5-comparison-with-architecture-b-time-series-optimized" class="md-nav__link">
     <span class="md-ellipsis">
-      🧭 Overall Evolution Summary
+      5. Comparison with Architecture B (Time-Series Optimized)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Comparison with Architecture B (Time-Series Optimized)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-what-we-already-have-partially" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 What we already have (partially)
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#progressive-implementation-strategy" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#52-what-is-missing-to-truly-reach-architecture-b" class="md-nav__link">
     <span class="md-ellipsis">
-      🔄 Progressive Implementation Strategy
+      5.2 What is missing to truly reach “Architecture B”
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-therefore-what-must-be-done-practically-to-go-from-a-b" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Therefore: what must be done practically to go from A → B
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1349,337 +1211,176 @@
 
 
 
-<h1 id="architectural-evolution-cnc-data-analytics-system">🧱 Architectural Evolution – CNC Data Analytics System</h1>
-<h3 id="preliminary-note">⚠️ Preliminary Note</h3>
-<p>The following architectural proposals (<strong>Architectures A, B, and C</strong>) have been initially designed with the support of <em>ChatGPT (OpenAI)</em> as a reference framework for the project <strong>“Understanding from Numerical Control Driven Machining Control.”</strong></p>
-<p>They represent <strong>conceptual drafts and working hypotheses</strong>, not final decisions.<br />
-All elements — including component choices, data flows, and execution layers — must be <strong>reviewed, discussed, and validated by the entire project team</strong> before implementation.<br />
-Any modification, simplification, or extension should be agreed upon collectively to ensure technical consistency and feasibility.</p>
-<hr />
-<h2 id="architecture-a-local-batch-pipeline">⚙️ Architecture A — “Local Batch Pipeline”</h2>
-<h3 id="concept">🔹 Concept</h3>
-<p>A simple, local-first architecture for initial experimentation.<br />
-All processing is performed on the user’s PC, while data are stored on a remote PostgreSQL database.<br />
-It enables the team to explore the dataset, understand machine behavior, and prototype the analytics pipeline.  </p>
-<p>This is the <strong>starting point</strong> for the project — low complexity, minimal infrastructure, and ideal for the early development phase.</p>
-<hr />
-<h3 id="main-components">🧩 Main Components</h3>
-<table>
-<thead>
-<tr>
-<th>Layer</th>
-<th>Component</th>
-<th>Execution / Hosting</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Production plant</strong></td>
-<td>CNC Machine</td>
-<td>Physical system</td>
-<td>Produces raw operational variables (axis position, spindle load, etc.)</td>
-</tr>
-<tr>
-<td><strong>Cloud / Server</strong></td>
-<td>PostgreSQL Database (raw data)</td>
-<td>Hosted on UPM / remote server</td>
-<td>Stores high-frequency machine signals</td>
-</tr>
-<tr>
-<td><strong>Local PC</strong></td>
-<td>Python ETL (pandas, SQL)</td>
-<td>Executed locally in Jupyter / Spyder</td>
-<td>Extracts and cleans data, performs simple aggregations</td>
-</tr>
-<tr>
-<td></td>
-<td>Python Analytics</td>
-<td>Executed locally in Jupyter / Spyder</td>
-<td>Computes KPIs, operation time, energy per program, and alerts</td>
-</tr>
-<tr>
-<td></td>
-<td>Streamlit Dashboard (UI)</td>
-<td>Executed locally with Streamlit (Python web server)</td>
-<td>Visualizes results and provides basic user interaction</td>
-</tr>
-<tr>
-<td><strong>User</strong></td>
-<td>Operator / Analyst</td>
-<td>Local access</td>
-<td>Explores data, applies filters, interprets results</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h3 id="workflow">🔄 Workflow</h3>
-<ol>
-<li>The CNC machine sends raw variables to the PostgreSQL database.  </li>
-<li>Local ETL scripts retrieve and clean the data.  </li>
-<li>Analytics modules compute machine indicators and alerts.  </li>
-<li>The dashboard presents results interactively.</li>
-</ol>
-<hr />
-<h3 id="advantages">✅ Advantages</h3>
+<h1 id="tbda-project-architectures-current-status-and-roadmap-alignment-presented-on-15122025">TBDA Project Architectures — Current Status and Roadmap Alignment (presented on 15/12/2025)</h1>
+<h2 id="1-the-original-roadmap-a-b-c">1. The original roadmap (A, B, C)</h2>
+<p>We defined three evolutionary stages:</p>
+<h3 id="architecture-a-local-batch">Architecture A — Local Batch</h3>
 <ul>
-<li>Very simple to deploy and maintain  </li>
-<li>Ideal for small datasets or offline analysis  </li>
-<li>Full transparency and control for debugging and learning  </li>
+<li>Remote PostgreSQL (raw data).</li>
+<li>All analysis performed locally in Python (pandas, SQL).</li>
+<li>Local dashboard in Streamlit.</li>
+<li>Typical use: prototyping, data understanding, batch analytics.</li>
 </ul>
-<h3 id="limitations">⚠️ Limitations</h3>
+<h3 id="architecture-b-time-series-optimized">Architecture B — Time-Series Optimized</h3>
 <ul>
-<li>Query time increases with dataset size  </li>
-<li>Manual updates required (no automation)  </li>
-<li>No real-time feedback; purely batch operation  </li>
+<li>PostgreSQL + TimescaleDB (hypertables + continuous aggregates).</li>
+<li>Python ETL/analytics still local.</li>
+<li>Dashboard (Streamlit) reading pre-aggregated data from the DB.</li>
+<li>Objective: performance &amp; scalability on large volumes.</li>
 </ul>
-<hr />
-<h3 id="adoption-timeline">🕒 Adoption timeline</h3>
-<p>Used in <strong>Phase 1</strong> (project start).<br />
-Goal: validate the data model, ensure database connectivity, and develop the first analysis scripts.</p>
-<hr />
-<h3 id="architecture-diagram">📷 Architecture Diagram</h3>
-<p><img alt="Architecture A" src="../assets/TBDA_Architectures-A.jpg" /></p>
-<hr />
-<h2 id="architecture-b-optimized-time-series-pipeline">⚡ Architecture B — “Optimized Time-Series Pipeline”</h2>
-<h3 id="concept_1">🔹 Concept</h3>
-<p>An upgraded version focusing on <strong>performance and scalability</strong>.<br />
-PostgreSQL is extended with <strong>TimescaleDB</strong>, enabling hypertables and continuous aggregation for fast time-based queries.<br />
-This allows the system to handle larger volumes of CNC data with near-real-time responsiveness.</p>
-<hr />
-<h3 id="main-components_1">🧩 Main Components</h3>
-<table>
-<thead>
-<tr>
-<th>Layer</th>
-<th>Component</th>
-<th>Execution / Hosting</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Production plant</strong></td>
-<td>CNC Machine</td>
-<td>Physical source</td>
-<td>Streams operational data continuously</td>
-</tr>
-<tr>
-<td><strong>Cloud / Server</strong></td>
-<td>PostgreSQL (raw data)</td>
-<td>Hosted on remote server</td>
-<td>Stores unprocessed variables</td>
-</tr>
-<tr>
-<td></td>
-<td>TimescaleDB</td>
-<td>Hosted on cloud server – automatic aggregation</td>
-<td>Extends PostgreSQL to manage time-series efficiently</td>
-</tr>
-<tr>
-<td><strong>Local PC</strong></td>
-<td>Python ETL</td>
-<td>Executed locally in Jupyter / Spyder</td>
-<td>Loads data, applies additional transformations and cleaning</td>
-</tr>
-<tr>
-<td></td>
-<td>Python Analytics</td>
-<td>Executed locally in Jupyter / Spyder</td>
-<td>Performs KPI calculation, energy/time estimation, and alert generation</td>
-</tr>
-<tr>
-<td></td>
-<td>Streamlit Dashboard (UI)</td>
-<td>Executed locally with Streamlit</td>
-<td>Visualizes aggregated data with time filters and metrics</td>
-</tr>
-<tr>
-<td><strong>User</strong></td>
-<td>Operator / Analyst</td>
-<td>Local or LAN access</td>
-<td>Uses the dashboard for insights and comparisons</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h3 id="workflow_1">🔄 Workflow</h3>
-<ol>
-<li>The CNC data are inserted into PostgreSQL (raw).  </li>
-<li>TimescaleDB automatically builds hypertables and continuous aggregates.  </li>
-<li>Local ETL scripts access pre-aggregated data instead of raw tables.  </li>
-<li>Analytics compute KPIs and alerts efficiently.  </li>
-<li>The dashboard displays up-to-date results.</li>
-</ol>
-<hr />
-<h3 id="advantages_1">✅ Advantages</h3>
+<h3 id="architecture-c-streaming-real-time">Architecture C — Streaming / Real-Time</h3>
 <ul>
-<li>Fast queries thanks to TimescaleDB hypertables  </li>
-<li>Continuous aggregation handled automatically on the server  </li>
-<li>Scalable to millions of records  </li>
-<li>Compatible with the same local Python workflow  </li>
+<li>Kafka for ingestion, Spark Structured Streaming for real-time processing.</li>
+<li>PostgreSQL (operational) + TimescaleDB (historical).</li>
+<li>Dashboard showing machine state and KPIs in near real-time.</li>
+<li>Objective: real-time analytics and immediate alerts.</li>
 </ul>
-<h3 id="limitations_1">⚠️ Limitations</h3>
+<p><img alt="Timeline" src="../assets/timeline.jpg" /></p>
+<hr />
+<h2 id="2-current-architecture">2. CURRENT Architecture</h2>
+<p><img alt="Current Architecture" src="../assets/Current_Architecture.jpg" /></p>
+<h3 id="21-data-source-cloud">2.1 Data source / Cloud</h3>
 <ul>
-<li>Requires server configuration for TimescaleDB  </li>
-<li>Still partially manual (batch updates)  </li>
-<li>No true real-time streaming yet  </li>
+<li>
+<p><strong>CNC machine (physical plant)</strong><br />
+  Produces high-frequency signals (axes, spindle, temperatures, alarms).</p>
+</li>
+<li>
+<p><strong>Remote PostgreSQL</strong></p>
+</li>
+<li>Main tables:<ul>
+<li><code>public.variable_log_float</code> (temperature, spindle load, machine state, etc.)</li>
+<li><code>public.variable_log_string</code> (alarms stored as arrays like <code>[code, msg, plc, line]</code>)</li>
 </ul>
-<hr />
-<h3 id="adoption-timeline_1">🕒 Adoption timeline</h3>
-<p>Used in <strong>Phase 2</strong> (mid-project).<br />
-Goal: optimize performance and manage higher data volumes once the prototype is validated.</p>
-<hr />
-<h3 id="architecture-diagram_1">📷 Architecture Diagram</h3>
-<p><img alt="Architecture B" src="../assets/TBDA_Architectures-B.jpg" /></p>
-<hr />
-<h2 id="architecture-c-streaming-real-time-pipeline">🌐 Architecture C — “Streaming / Real-Time Pipeline”</h2>
-<h3 id="concept_2">🔹 Concept</h3>
-<p>The most advanced version, enabling <strong>real-time monitoring and analytics</strong>.<br />
-This architecture integrates <strong>Apache Kafka</strong> for data streaming and <strong>Spark Structured Streaming</strong> for on-the-fly processing.<br />
-It combines real-time pipelines with long-term storage and visualization.</p>
-<hr />
-<h3 id="main-components_2">🧩 Main Components</h3>
-<table>
-<thead>
-<tr>
-<th>Layer</th>
-<th>Component</th>
-<th>Execution / Hosting</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Production plant</strong></td>
-<td>CNC Machine</td>
-<td>Physical source</td>
-<td>Continuously generates real-time signals</td>
-</tr>
-<tr>
-<td><strong>Cloud / Processing layer</strong></td>
-<td>Apache Kafka (stream)</td>
-<td>Hosted on cloud server – streaming message broker</td>
-<td>Receives live data, buffers, and distributes messages</td>
-</tr>
-<tr>
-<td></td>
-<td>Spark Structured Streaming</td>
-<td>Executed on cloud server – real-time processing engine</td>
-<td>Processes Kafka streams, detects patterns and alerts, forwards results</td>
-</tr>
-<tr>
-<td></td>
-<td>PostgreSQL (operational storage)</td>
-<td>Hosted on remote server</td>
-<td>Stores latest operational data for fast queries</td>
-</tr>
-<tr>
-<td></td>
-<td>TimescaleDB (historical storage)</td>
-<td>Hosted on remote server</td>
-<td>Maintains long-term time-series logs and aggregates</td>
-</tr>
-<tr>
-<td><strong>Local PC</strong></td>
-<td>Python ETL</td>
-<td>Executed locally in Jupyter / Spyder</td>
-<td>Periodically integrates cloud data for additional analysis</td>
-</tr>
-<tr>
-<td></td>
-<td>Python Analytics</td>
-<td>Executed locally in Jupyter / Spyder</td>
-<td>Further exploration and validation of real-time results</td>
-</tr>
-<tr>
-<td></td>
-<td>Streamlit Dashboard (UI)</td>
-<td>Executed locally with Streamlit</td>
-<td>Displays live machine state, alerts, and KPIs in near real-time</td>
-</tr>
-<tr>
-<td><strong>User</strong></td>
-<td>Operator / Analyst</td>
-<td>Web access</td>
-<td>Monitors operations and system health interactively</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h3 id="workflow_2">🔄 Workflow</h3>
-<ol>
-<li>CNC sensors send live data streams to Apache Kafka.  </li>
-<li>Kafka buffers and forwards events to Spark Structured Streaming.  </li>
-<li>Spark aggregates and processes data in micro-batches, detecting operation cycles and anomalies.  </li>
-<li>Results are written to PostgreSQL (for fast querying) and TimescaleDB (for historical logs).  </li>
-<li>The Streamlit dashboard continuously updates with live KPIs and alerts.</li>
-</ol>
-<hr />
-<h3 id="advantages_2">✅ Advantages</h3>
+</li>
+<li>No TimescaleDB installed (no hypertables / continuous aggregates).</li>
+</ul>
+<h3 id="22-local-data-analytics-pc">2.2 Local “data &amp; analytics” (PC)</h3>
+<p>We currently have two sub-worlds:</p>
+<h4 id="a-extraction-data-analysis-toolbox-offline-not-shown-in-the-diagram">a) Extraction / data analysis toolbox (offline) <em>(not shown in the diagram)</em></h4>
+<p>Standalone scripts using <code>config.yaml</code> + SQLAlchemy/psycopg2 to read from the DB and:</p>
 <ul>
-<li>Real-time data ingestion and processing  </li>
-<li>Immediate alerting and visualization  </li>
-<li>Hybrid storage (short-term + long-term)  </li>
-<li>Scalable to industrial workloads  </li>
+<li><strong>Explore alarms</strong></li>
+<li>
+<p><code>Alarm data _ extraction.py</code>: parse <code>variable_log_string</code>, explode arrays, build timeline &amp; summary table.</p>
+</li>
+<li>
+<p><strong>Analyze motor utilization / machine state / activity</strong></p>
+</li>
+<li><code>Engine utilisation data _ extraction.py</code> → scatter plots per axis.</li>
+<li><code>Extraction_operation_in_progress.py</code> → ON/IDLE/OFF timeline (Gantt-style).</li>
+<li>
+<p><code>System_status.py</code> → hour × day activity pivot table.</p>
+</li>
+<li>
+<p><strong>Analyze temperatures</strong></p>
+</li>
+<li><code>Temperature data _ extraction.py</code> → temperature trend per axis.</li>
+<li>
+<p><code>Temperature data mean and max.py</code> → 30-minute resample, mean &amp; max.</p>
+</li>
+<li>
+<p><strong>Generic CSV export</strong></p>
+</li>
+<li><code>Analysis_1.py</code> → extract multiple IDs and save to CSV.</li>
 </ul>
-<h3 id="limitations_2">⚠️ Limitations</h3>
+<p>All of these run locally, on-demand, batch, triggered manually.</p>
+<h4 id="b-web-backend-fastapi">b) Web backend (FastAPI)</h4>
 <ul>
-<li>Higher infrastructure complexity  </li>
-<li>Requires Kafka and Spark deployment  </li>
-<li>Needs reliable network and cloud configuration  </li>
+<li><code>backend/database.py</code> → psycopg2 connection using environment variables.</li>
+<li><code>backend/services.py</code> → production SQL logic:</li>
+<li>daily average temperature (<code>id_var=618</code>) and spindle load (<code>id_var=630</code>)</li>
+<li>daily alarm count (<code>num_alarms</code>)</li>
+<li>list of critical alarms (3 specific descriptions), exploding JSON with <code>jsonb_array_elements</code></li>
+<li>hourly combined averages (temp + spindle) via <code>GROUP BY date_trunc('hour', ...)</code></li>
+<li><code>backend/main.py</code> → FastAPI app exposing:</li>
+<li><code>/api/daily_temp_avg</code></li>
+<li><code>/api/daily_spindle_avg</code></li>
+<li><code>/api/number_daily_alerts</code></li>
+<li><code>/api/critical_alerts</code></li>
+<li><code>/api/hourly_combined</code>
+  which call <code>services.py</code> and return JSON for the frontend.</li>
 </ul>
+<h3 id="23-web-frontend-react">2.3 Web Frontend (React)</h3>
+<p>A React/TypeScript SPA (Vite) running in the local browser.</p>
+<ul>
+<li><code>App.tsx</code>:</li>
+<li>manages <code>selectedDate</code></li>
+<li>calls backend via axios:<ul>
+<li><code>/api/daily_temp_avg</code></li>
+<li><code>/api/daily_spindle_avg</code></li>
+<li><code>/api/number_daily_alerts</code></li>
+<li><code>/api/critical_alerts</code></li>
+<li><code>/api/hourly_combined</code></li>
+</ul>
+</li>
+<li>displays:<ul>
+<li>3 KPI boxes (<code>InformationBox.tsx</code>): avg temp, avg spindle, number of alarms</li>
+<li>combined hourly chart (<code>HourlyChart.tsx</code>) with Recharts (dual Y-axis)</li>
+<li>critical alarms panel (<code>AlertPanel.tsx</code> + <code>AlertCard.tsx</code>)</li>
+</ul>
+</li>
+<li><code>SidePanel.tsx</code>: stub navigation menu (buttons without functionality)</li>
+<li><code>style.css</code>: dark theme, dashboard layout</li>
+</ul>
+<p><strong>Everything is still batch:</strong> the user selects a date → frontend makes HTTP calls → backend executes SQL queries on historical data on demand.</p>
 <hr />
-<h3 id="adoption-timeline_2">🕒 Adoption timeline</h3>
-<p>Used in <strong>Phase 3</strong> (final stage).<br />
-Goal: demonstrate real-time analytics capability, provide continuous monitoring, and connect the full data lifecycle (machine → cloud → user).</p>
+<h2 id="3-which-architecture-are-we-closest-to">3. Which architecture are we closest to?</h2>
+<p>We are closest to <strong>ARCHITECTURE A (Local Batch)</strong>, with an evolution:</p>
+<p><strong>Architecture A + (REST API + separate frontend)</strong></p>
+<p><strong>Why:</strong>
+- Raw remote PostgreSQL data, no TimescaleDB → exactly like A, not like B.
+- Batch analysis via Python scripts → matches A.
+- No streaming, no Kafka, no Spark → far from C.
+- Dashboard is not Streamlit but React + FastAPI; conceptually, it is still a local UI that queries the DB (indirectly) and displays KPIs and charts.</p>
 <hr />
-<h3 id="architecture-diagram_2">📷 Architecture Diagram</h3>
-<p><img alt="Architecture C" src="../assets/TBDA_Architectures-C.jpg" /></p>
+<h2 id="4-detailed-comparison-with-architecture-a">4. Detailed comparison with Architecture A</h2>
+<h3 id="41-implemented-from-architecture-a">4.1 Implemented from Architecture A</h3>
+<p>✅ Remote PostgreSQL as the central data store<br />
+✅ Local Python ETL (extraction scripts with pandas + SQLAlchemy)<br />
+✅ Local Python analytics (KPIs, timelines, pivots, resampling)<br />
+✅ Interactive dashboard (React + FastAPI instead of Streamlit, but same function)<br />
+✅ Batch mode, not real-time  </p>
+<p>Additionally:<br />
+✅ Added a FastAPI backend layer, reusable and clean, separating SQL from UI logic.</p>
+<h3 id="42-what-is-missing-or-different-from-architecture-a">4.2 What is missing (or different) from Architecture A</h3>
+<p>❌ Streamlit dashboard (replaced by a separate React frontend + FastAPI backend).<br />
+⚠️ Batch automation remains manual on the extraction side (scripts run by hand), consistent with A.</p>
+<p><strong>Conclusion:</strong> for the purposes of the roadmap, Architecture A can be considered complete.</p>
 <hr />
-<h2 id="overall-evolution-summary">🧭 Overall Evolution Summary</h2>
-<table>
-<thead>
-<tr>
-<th>Stage</th>
-<th>Main Goal</th>
-<th>Key Technologies</th>
-<th>Deployment Level</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>A – Local Batch</strong></td>
-<td>Prototype, data understanding</td>
-<td>PostgreSQL, Python (pandas), Streamlit</td>
-<td>Local execution</td>
-</tr>
-<tr>
-<td><strong>B – Time-Series Optimized</strong></td>
-<td>Performance &amp; scalability</td>
-<td>TimescaleDB, Python (ETL/Analytics)</td>
-<td>Local + Cloud</td>
-</tr>
-<tr>
-<td><strong>C – Streaming / Real-Time</strong></td>
-<td>Real-time insights &amp; automation</td>
-<td>Kafka, Spark, PostgreSQL, TimescaleDB</td>
-<td>Cloud + Local UI</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="progressive-implementation-strategy">🔄 Progressive Implementation Strategy</h2>
-<ol>
-<li><strong>Phase 1:</strong> Start with <em>Architecture A</em> → focus on ETL pipeline, KPIs, and dashboard.  </li>
-<li><strong>Phase 2:</strong> Migrate to <em>Architecture B</em> → activate TimescaleDB and optimize queries.  </li>
-<li><strong>Phase 3:</strong> Extend to <em>Architecture C</em> → integrate streaming for real-time feedback and alerts.</li>
-</ol>
-<hr />
-<p>This progressive approach ensures that:
-- The team learns the full data lifecycle step by step.<br />
-- Each phase delivers a working, demonstrable system.<br />
-- The final architecture (C) aligns with modern <strong>Industry 4.0</strong> and <strong>IoT</strong> paradigms — turning raw CNC signals into real-time, actionable intelligence.</p>
+<h2 id="5-comparison-with-architecture-b-time-series-optimized">5. Comparison with Architecture B (Time-Series Optimized)</h2>
+<h3 id="51-what-we-already-have-partially">5.1 What we already have (partially)</h3>
+<p>✅ Temporal queries with aggregations already implemented:
+- daily averages (<code>AVG</code> with timestamp range condition)
+- hourly averages (<code>get_hourly_combined_stats</code> using <code>date_trunc('hour')</code>)
+- daily alarm counts</p>
+<p>✅ A clean separation between backend and frontend, ready to benefit from a faster DB</p>
+<p>Thus, we are conceptually aligned with B in terms of query patterns, but not in infrastructure.</p>
+<h3 id="52-what-is-missing-to-truly-reach-architecture-b">5.2 What is missing to truly reach “Architecture B”</h3>
+<p>1) <strong>TimescaleDB on top of PostgreSQL</strong>
+- install TimescaleDB extension
+- convert tables (<code>variable_log_float</code>, optionally <code>variable_log_string</code>) into hypertables</p>
+<p>2) <strong>Continuous aggregates / time-series materialized views</strong>
+- create continuous aggregate views, e.g.:
+  - hourly averages for key variables
+  - daily aggregates
+  - alarm counters
+- backend should query these instead of recalculating on the raw table</p>
+<p>3) <strong>Backend adjustments</strong>
+- refactor <code>services.py</code> to query the new aggregate views
+- optionally support multi-day ranges more efficiently</p>
+<p>4) <strong>Some orchestration</strong>
+- scheduled jobs to populate derived tables (if some transformations remain outside Timescale)</p>
+<h3 id="53-therefore-what-must-be-done-practically-to-go-from-a-b">5.3 Therefore: what must be done practically to go from A → B</h3>
+<p>We have currently developed a system whose architecture mirrors A:
+- raw data in PostgreSQL,
+- batch analysis in Python (scripts + FastAPI backend),
+- a local dashboard consuming KPIs calculated on-demand.</p>
+<p>To move toward an architecture like B, we now need to:
+1. Enable TimescaleDB and convert <code>variable_log_*</code> tables into hypertables.
+2. Define continuous aggregates (hourly/daily views) for temperature, spindle load, machine state and alarms.
+3. Refactor <code>services.py</code> to read from these pre-aggregated views instead of the raw table.
+4. Consider deploying the backend closer to the DB (cloud/server) to reduce latency while keeping the frontend local/web.</p>
 
 
 
